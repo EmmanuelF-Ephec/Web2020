@@ -7,7 +7,7 @@ class Utilisateur(models.Model):
         typeCompte = models.CharField(max_length=8)
         nom = models.CharField(max_length=50)
         prenom = models.CharField(max_length=50)        
-        mail = models.CharField(max_length=100)
+        mail = models.EmailField(max_length=100, unique=True)
         mdp = models.CharField(max_length=100)
 
         def __str__(self):
