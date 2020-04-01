@@ -8,6 +8,10 @@ const LoginPage = () => {
     console.log('Received values of form: ', values);
   };
 
+function submit() {
+
+}
+
   return (
     <Form
       name="normal_login"
