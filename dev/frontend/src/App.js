@@ -13,6 +13,8 @@ import {
 //Pages
 import LoginPage from "./pages/login";
 import MainPage from "./pages/main";
+import ForgotPage from "./pages/forgotPsw";
+
 
 class App extends Component {
   render () {
@@ -21,6 +23,7 @@ class App extends Component {
       <Switch>
         <Route exact path="/" component={LoginPage}/>
         <Route path="/main" component={MainPage}/>
+        <Route path="/fgtPsw" component={ForgotPage}/>
       </Switch>
     </Router>
   )
