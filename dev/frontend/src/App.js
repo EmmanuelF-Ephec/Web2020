@@ -1,33 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
+import logo from './logo.svg';
 import './App.css';
-import "antd/dist/antd.css";
 
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Link,
-  Redirect
-} from "react-router-dom";
-
-//Pages
-import LoginPage from "./pages/login";
-import MainPage from "./pages/main";
-import ForgotPage from "./pages/forgotPsw";
-
-
-class App extends Component {
-  render () {
+function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={LoginPage}/>
-        <Route path="/main" component={MainPage}/>
-        <Route path="/fgtPsw" component={ForgotPage}/>
-      </Switch>
-    </Router>
-  )
-}
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
