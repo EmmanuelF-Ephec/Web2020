@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
 }
 
 code {
@@ -14,11 +15,13 @@ code {
 
 .login-form,
 .fgtPsw-form {
-  max-width: 300px;
-  margin: 0 auto;
+  max-width: 400px;
 }
-.login-form-forgot {
-  float: right;
+#login, #frgtPsw {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .ant-col-rtl .login-form-forgot {
   float: left;

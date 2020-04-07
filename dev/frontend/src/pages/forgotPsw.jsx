@@ -7,35 +7,37 @@ const ForgotPage = () => {
     console.log("Received values of form: ", values);
   };
   return (
-    <Form
-      name="fgtPsw"
-      className="fgtPsw-form"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-    >
-      <Form.Item
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your email!",
-          },
-        ]}
+    <div id="frgtPsw">
+      <Form
+        name="fgtPsw"
+        className="fgtPsw-form"
+        initialValues={{
+          remember: true,
+        }}
+        onFinish={onFinish}
       >
-        <Input
-          prefix={<UserOutlined className="site-form-item-icon" />}
-          placeholder="Email"
-        />
-      </Form.Item>
+        <Form.Item
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email!",
+            },
+          ]}
+        >
+          <Input
+            prefix={<UserOutlined className="site-form-item-icon" />}
+            placeholder="Email"
+          />
+        </Form.Item>
 
-      <Form.Item>
-        <Button type="primary" htmlType="submit" className="fgtPsw-form-button">
-          Send
-        </Button>
-      </Form.Item>
-    </Form>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" className="fgtPsw-form-button">
+            Send
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 
