@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Form, Button} from 'react-bootstrap';
 
 class Login extends Component {
-  render() {
     state = {  }
     render() { 
         return (
@@ -23,7 +22,7 @@ class Login extends Component {
                     <a href="/fgtPassword">Mot de passe oublié ?</a>
                 </Form>
             </div>
-          );
+          )
     }
 }
 
