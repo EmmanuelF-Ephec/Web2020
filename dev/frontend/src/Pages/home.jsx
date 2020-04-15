@@ -1,10 +1,11 @@
 import React, { Component } from "react";
+import { NavigationBar } from "../components/NavigationBar";
 
-class FgtPass extends Component {
+class home extends Component {
   state = {};
   render() {
-    return <div>home</div>;
+    return <div></div>;
   }
 }
 
-export default FgtPass;
+export default home;

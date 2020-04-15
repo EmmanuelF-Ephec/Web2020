@@ -1,10 +1,16 @@
 import React, { Component } from "react";
+import { NavigationBar } from "../components/NavigationBar";
 
-class FgtPass extends Component {
+class timeTables extends Component {
   state = {};
   render() {
-    return <div>TimeTables</div>;
+    return (
+      <React.Fragment>
+        <NavigationBar />
+        <h1>Horaires</h1>
+      </React.Fragment>
+    );
   }
 }
 
-export default FgtPass;
+export default timeTables;

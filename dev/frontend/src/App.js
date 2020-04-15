@@ -15,11 +15,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/fgtPassword" component={FgtPass} />
-          <NavigationBar>
-            <Route path="/home" component={Home} />
-            <Route path="/timeTables" component={TimeTables} />
-            <Route path="/announcements" component={Announcements} />
-          </NavigationBar>
+          <Route path="/home" component={Home} />
+          <Route path="/timeTables" component={TimeTables} />
+          <Route path="/announcements" component={Announcements} />
         </Switch>
       </Router>
     </div>
