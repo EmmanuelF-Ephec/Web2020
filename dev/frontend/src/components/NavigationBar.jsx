@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import styled from "styled-components";
 
-const Style = styled.div`
+const Styles = styled.div`
   .navbar {
     background-color: #222;
   }
@@ -18,13 +18,13 @@ const Style = styled.div`
 `;
 
 export const NavigationBar = () => (
-  <Style>
-    <Navbar expand="lg">
+  <Styles>
+    <Navbar expand="xl">
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           <Nav.Item>
-            <Nav.Link href="/home">Home</Nav.Link>
+            <Nav.Link href="/home">Accueil</Nav.Link>
           </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/announcements">Annonces</Nav.Link>
@@ -35,5 +35,5 @@ export const NavigationBar = () => (
         </Nav>
       </Navbar.Collapse>
     </Navbar>
-  </Style>
+  </Styles>
 );
