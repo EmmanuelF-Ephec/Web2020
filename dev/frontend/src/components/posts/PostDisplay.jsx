@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const Style = styled.a`
+  color: black;
+`;
 
 class PostDisplay extends Component {
   state = {};
@@ -6,8 +11,8 @@ class PostDisplay extends Component {
   render() {
     const { post } = this.props;
     return (
-      <div>
-        <a href="/announcements">{post.title}</a>
+      <div className={this.props.postClass}>
+        <h2>{post.title}</h2>
         <p>{post.content}</p>
       </div>
     );

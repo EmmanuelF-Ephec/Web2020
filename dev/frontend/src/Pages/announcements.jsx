@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../components/NavigationBar";
-import PostDisplay from "../components/PostDisplay";
+import PostDisplay from "../components/posts/PostDisplay";
 
 let annonces = [
   {
@@ -21,6 +21,10 @@ let annonces = [
 ];
 
 class Announcements extends Component {
+  componentDidMount() {
+    console.log("COmponent mounted ");
+  }
+
   state = {
     posts: annonces,
   };
@@ -39,7 +43,7 @@ class Announcements extends Component {
         <h1>Annonces</h1>
         {posts.length > 0 ? (
           posts.map((postItem, index) => {
-            return <PostDisplay post={postItem} />;
+            return <PostDisplay post={postItem} postClass="card" />;
           })
         ) : (
           <p>No posts</p>
