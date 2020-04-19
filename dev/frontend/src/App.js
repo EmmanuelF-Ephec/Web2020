@@ -7,7 +7,9 @@ import FgtPass from "./Pages/fgtPass";
 import Home from "./Pages/home";
 import Announcements from "./Pages/announcements";
 import TimeTables from "./Pages/timeTables";
+import { NavigationBar } from "./components/NavigationBar";
 import PostDetail from "./components/posts/PostDetail";
+import RegistrationForm from "./Pages/registration";
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Login} />
+          <Route path="/registration" component={RegistrationForm} />
           <Route path="/fgtPassword" component={FgtPass} />
           <Route path="/home" component={Home} />
           <Route path="/timeTables" component={TimeTables} />
