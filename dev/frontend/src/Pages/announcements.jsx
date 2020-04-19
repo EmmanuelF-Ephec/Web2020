@@ -7,16 +7,19 @@ let annonces = [
     title: "Tess title 1",
     content: "Test content 1",
     date: "21-03-2020",
+    id: "3",
   },
   {
     title: "Tess title 2",
     content: "Test content 2",
     date: "11-02-2020",
+    id: "2",
   },
   {
     title: "Tess title 3",
     content: "Test content 3",
     date: "24-03-2020",
+    id: "3948",
   },
 ];
 
