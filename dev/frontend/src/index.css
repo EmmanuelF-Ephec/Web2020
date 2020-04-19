@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-#login, #fgtPass {
+#login, #fgtPass, #registration {
   display: flex;
   align-items: center;
   justify-content: center;
