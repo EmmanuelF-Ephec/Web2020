@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { Card } from "react-bootstrap";
 
-const Style = styled.a`
+const Style = styled.h2`
   color: black;
 `;
 
@@ -11,9 +13,21 @@ class PostDisplay extends Component {
   render() {
     const { post } = this.props;
     return (
-      <div className={this.props.postClass}>
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
+      <div>
+        <Card body>
+          <Style />
+          <h2>
+            <Link
+              maintainScrollPosition={true}
+              to={{
+                pathname: `/announcements/${post.id}`,
+                state: { fromDashboard: false },
+              }}
+            >
+              {post.title}
+            </Link>
+          </h2>
+        </Card>
       </div>
     );
   }
