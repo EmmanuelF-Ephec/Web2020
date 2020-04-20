@@ -1,5 +1,6 @@
 import React , {Component} from 'react'
 import {Form, Button, Col} from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios';
 
 const formValid = formErrors => {
@@ -28,7 +29,8 @@ class RegistrationForm extends Component {
                 firstName: "",
                 lastName: "",
                 email: "",
-                password: ""
+                password: "",
+                passwordCheck : ""
             }
         }
     }
@@ -59,7 +61,6 @@ class RegistrationForm extends Component {
         const { name, value} = event.target
         let formErrors = this.state.formErrors;
         
-        console.log(event.target.name);
 
         switch (name) {
             case 'firstName':
@@ -69,12 +70,17 @@ class RegistrationForm extends Component {
                 break;
             case 'lastName':
                 formErrors.lastName = value.length < 3 && value.length > 0 
-                ? "minimum 3 caractères nécessaires"
+                ? "minimum 6 caractères nécessaires"
                 : ""
                 break;
             case 'password':
                 formErrors.password = value.length < 6 && value.length > 0
-                ? "minimum 3 caractères nécessaires"
+                ? "minimum 6 caractères nécessaires"
+                : ""
+                break;
+            case 'passwordCheck':
+                formErrors.passwordCheck = value.length < 6 && value.length > 0 
+                ? "minimum 6 caractères"
                 : ""
                 break;
             case 'email':
@@ -99,29 +105,44 @@ class RegistrationForm extends Component {
                     <Form.Group as={Col} onChange={this.handleChange}>
                     <Form.Label>Prénom</Form.Label>
                     <Form.Control name="firstName" placeholder="Entrez le prénom"/>
+                    {this.state.formErrors.firstName.length > 0 && (
+                        <span className="errorMessage">{this.state.formErrors.firstName}</span>
+                    )}
                     </Form.Group>
-
                     <Form.Group as={Col} onChange={this.handleChange}>
                     <Form.Label>Nom</Form.Label>
                     <Form.Control name="lastName" placeholder="Entrez le nom" />
+                    {this.state.formErrors.lastName.length > 0 && (
+                        <span className="errorMessage">{this.state.formErrors.lastName}</span>
+                    )}
                     </Form.Group>
+                    
                 </Form.Row>
 
                 <Form.Row>
                     <Form.Group as={Col} onChange={this.handleChange}>
                         <Form.Label>Mot de passe</Form.Label>
                         <Form.Control name="password" type="password" placeholder="Entrez le mot de passe" />
+                        {this.state.formErrors.password.length > 0 && (
+                        <span className="errorMessage">{this.state.formErrors.password}</span>
+                        )}
                     </Form.Group>
 
                     <Form.Group as={Col} onChange={this.handleChange}>
                         <Form.Label>Vérifier mot de passe</Form.Label>
                         <Form.Control name="passwordCheck" type="password" placeholder="Vérifier mot de passe" />
+                        {this.state.formErrors.passwordCheck.length > 0 && (
+                        <span className="errorMessage">{this.state.formErrors.passwordCheck}</span>
+                        )}
                     </Form.Group>
                 </Form.Row>
 
                 <Form.Group onChange={this.handleChange}>
                     <Form.Label>Email</Form.Label>
                     <Form.Control name="email" type="email" placeholder="Entrez le mail" />
+                    {this.state.formErrors.email.length > 0 && (
+                        <span className="errorMessage">{this.state.formErrors.email}</span>
+                    )}
                 </Form.Group>
 
                 <Button variant="primary" type="submit">

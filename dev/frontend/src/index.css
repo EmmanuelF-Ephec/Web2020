@@ -18,3 +18,11 @@ code {
   justify-content: center;
   height: 100vh;
 }
+
+#login form, #fgtPass form, #registration form {
+  min-width: 600px;
+}
+
+.errorMessage {
+  color: red;
+}
