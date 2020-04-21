@@ -25,6 +25,7 @@ class RegistrationForm extends Component {
             password: null,
             passwordCheck: null,
             email: null,
+            typeCompte: 'admin',
             formErrors: {
                 firstName: "",
                 lastName: "",
@@ -39,20 +40,27 @@ class RegistrationForm extends Component {
         event.preventDefault()
 
         if (formValid(this.state.formErrors)) {
-            console.log(
-                this.state.firstName, 
-                this.state.lastName , 
-                this.state.password,
-                this.state.email
-            )
+            
+            const user = {
+                nom : this.state.lastName,
+                prenom : this.state.firstName,
+                typecompte : this.state.typeCompte,
+                mail : this.state.email,
+                mdp : this.state.password
+            };
+            axios.post('http://127.0.0.1:8000/api/utilisateurs/', 
+            JSON.stringify(user),
+            {headers : {
+                "Content-Type": "application/json"
+            }
+            }
+        ).then(res => {
+            console.log(res.data);
+        })
         }
         else {
             console.log("Erreur dans le formulaire");
         }
-
-        axios.post('http://127.0.0.1:8000/api/utilisateurs', 
-            
-        )
     }
 
     handleChange = (event) => {
@@ -88,7 +96,7 @@ class RegistrationForm extends Component {
                 ? ""
                 : "Email invalide"
                 break;
-            default: 
+            default:        
                 break;
         }
 
@@ -144,7 +152,6 @@ class RegistrationForm extends Component {
                         <span className="errorMessage">{this.state.formErrors.email}</span>
                     )}
                 </Form.Group>
-
                 <Button variant="primary" type="submit">
                     Envoyer
                 </Button>
