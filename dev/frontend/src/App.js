@@ -7,7 +7,6 @@ import FgtPass from "./Pages/fgtPass";
 import Home from "./Pages/home";
 import Announcements from "./Pages/announcements";
 import TimeTables from "./Pages/timeTables";
-import { NavigationBar } from "./components/NavigationBar";
 import PostDetail from "./components/posts/PostDetail";
 import RegistrationForm from "./Pages/registration";
 
