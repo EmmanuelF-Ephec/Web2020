@@ -24,6 +24,8 @@ router.register('utilisateurs', views.UtilisateursAPI)
 router.register('horaires', views.HorairesAPI)
 router.register('annonces', views.AnnoncesAPI)
 router.register('chat', views.ChatAPI)
+router.register(r'utilisateurs/(?P<mail>\d+)', views.UtilisateursAPI)
+
 
 
 urlpatterns = [
