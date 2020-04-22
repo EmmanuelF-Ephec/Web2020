@@ -2,51 +2,42 @@ import React, { Component } from "react";
 import { NavigationBar } from "../components/NavigationBar";
 import PostDisplay from "../components/posts/PostDisplay";
 
-let annonces = [
-  {
-    title: "Tess title 1",
-    content: "Test content 1",
-    date: "21-03-2020",
-    id: "3",
-  },
-  {
-    title: "Tess title 2",
-    content: "Test content 2",
-    date: "11-02-2020",
-    id: "2",
-  },
-  {
-    title: "Tess title 3",
-    content: "Test content 3",
-    date: "24-03-2020",
-    id: "3948",
-  },
-];
+const axios = require("axios").default;
 
 class Announcements extends Component {
-  componentDidMount() {
-    console.log("COmponent mounted ");
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: null,
+    };
   }
 
-  state = {
-    posts: annonces,
-  };
-
-  loadPosts() {
-    this.setState({
-      posts: annonces,
-    });
+  componentDidMount() {
+    let currentComponent = this;
+    axios
+      .get(`http://127.0.0.1:8000/api/annonces/`)
+      .then(function (response) {
+        // handle success
+        console.log("rreussite");
+        currentComponent.setState({
+          posts: response.data,
+        });
+        console.log(currentComponent.state.posts);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      });
   }
 
   render() {
-    const { posts } = this.state;
+    const posts = this.state.posts;
     return (
       <React.Fragment>
         <NavigationBar />
-        <h1>Annonces</h1>
         {posts.length > 0 ? (
-          posts.map((postItem, index) => {
-            return <PostDisplay post={postItem} postClass="card" />;
+          posts.map((postItem) => {
+            return <PostDisplay post={postItem} />;
           })
         ) : (
           <p>No posts</p>

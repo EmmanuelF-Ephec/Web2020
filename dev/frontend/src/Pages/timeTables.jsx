@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../components/NavigationBar";
-import { axios } from "axios";
+
+const axios = require("axios").default;
 
 class timeTables extends Component {
   state = {};
   constructor(props) {
     super(props);
   }
-  test() {
+  componentDidMount() {
     axios
-      .get("http://127.0.0.1:8000/api/annonces/")
+      .get("http://127.0.0.1:8000/api/annonces/2/")
       .then(function (response) {
         // handle success
         console.log(response);
+        console.log(response.data.texteannonce);
       })
       .catch(function (error) {
         // handle error
@@ -29,7 +31,6 @@ class timeTables extends Component {
         <NavigationBar />
         <div>
           <h1>Horaires</h1>
-          <button onClick={this.test()}>Envoyer</button>
         </div>
       </React.Fragment>
     );
