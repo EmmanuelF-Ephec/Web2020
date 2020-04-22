@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../components/NavigationBar";
 import PostDisplay from "../components/posts/PostDisplay";
-
+import { Button, Nav } from "react-bootstrap";
 const axios = require("axios").default;
 
 class Announcements extends Component {
@@ -33,6 +33,9 @@ class Announcements extends Component {
     return (
       <React.Fragment>
         <NavigationBar />
+        <Button variant="outline-success">
+          <Nav.Link href="/announcements/addPost">Ajouter une annonce</Nav.Link>
+        </Button>
         {posts.length > 0 ? (
           posts
             .sort(function (a, b) {

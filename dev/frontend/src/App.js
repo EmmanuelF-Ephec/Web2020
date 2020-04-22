@@ -10,7 +10,8 @@ import PostAdding from "./components/posts/PostAdding";
 import PostDetail from "./components/posts/PostDetail";
 import RegistrationForm from "./Pages/registration";
 import TimeTables from "./Pages/timeTables";
-import Profile from "./Pages/profile";
+import Profile from "./components/Profile/profile";
+import ModifyProfile from "./components/Profile/ModifyProfile";
 
 function App() {
   return (
@@ -22,7 +23,12 @@ function App() {
           <Route path="/fgtPassword" component={FgtPass} />
           <Route path="/home" component={Home} />
           <Route path="/timeTables" component={TimeTables} />
-          <Route path="/profile" component={Profile} />
+          <Route exact path="/profile" component={Profile} />
+          <Route
+            exact
+            path="/profile/modifyProfile"
+            component={ModifyProfile}
+          />
           <Route exact path="/announcements" component={Announcements} />
           <Route exact path="/announcements/addPost" component={PostAdding} />
           <Route exact path="/announcements/:id" component={PostDetail} />
