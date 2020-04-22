@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../NavigationBar";
-import { ListGroup, Button, Nav } from "react-bootstrap";
+import { ListGroup, Button, Nav, Container } from "react-bootstrap";
 const axios = require("axios").default;
 
 class profile extends Component {
@@ -41,18 +41,20 @@ class profile extends Component {
     return (
       <div>
         <NavigationBar />
-        <ListGroup variant="flush">
-          <ListGroup.Item>Nom: {lastName}</ListGroup.Item>
-          <ListGroup.Item>Prenom: {firstName} </ListGroup.Item>
-          <ListGroup.Item>Address e-Mail: {email}</ListGroup.Item>
-          <ListGroup.Item>Mot de passe: {password}</ListGroup.Item>
-          <ListGroup.Item>Type de personnel: {accountType}</ListGroup.Item>
-        </ListGroup>
-        <Button variant="outline-success">
-          <Nav.Link href="/profile/modifyProfile">
-            Modifier vos données
-          </Nav.Link>
-        </Button>
+        <Container>
+          <ListGroup variant="flush">
+            <ListGroup.Item>Nom: {lastName}</ListGroup.Item>
+            <ListGroup.Item>Prenom: {firstName} </ListGroup.Item>
+            <ListGroup.Item>Address e-Mail: {email}</ListGroup.Item>
+            <ListGroup.Item>Mot de passe: {password}</ListGroup.Item>
+            <ListGroup.Item>Type de personnel: {accountType}</ListGroup.Item>
+          </ListGroup>
+          <Button variant="outline-success">
+            <Nav.Link href="/profile/modifyProfile">
+              Modifier vos données
+            </Nav.Link>
+          </Button>
+        </Container>
       </div>
     );
   }

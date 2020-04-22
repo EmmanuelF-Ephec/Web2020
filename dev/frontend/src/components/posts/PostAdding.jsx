@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../NavigationBar";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Container } from "react-bootstrap";
 import axios from "axios";
 const formValid = (formErrors) => {
   let valid = true;
@@ -67,22 +67,24 @@ class postAdding extends Component {
     return (
       <div>
         <NavigationBar />
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="postTitle" onChange={this.handleChange}>
-            <Form.Label>Titre</Form.Label>
-            <Form.Control name="title" placeholder="Titre de l'annonce" />
-          </Form.Group>
-          <Form.Group controlId="postText" onChange={this.handleChange}>
-            <Form.Label>Texte de l'annonce</Form.Label>
-            <Form.Control name="text" as="textarea" rows="5" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-        </Form>
-        <Alert variant="success" show={this.state.show}>
-          Annonce postée!
-        </Alert>
+        <Container>
+          <Form onSubmit={this.handleSubmit}>
+            <Form.Group controlId="postTitle" onChange={this.handleChange}>
+              <Form.Label>Titre</Form.Label>
+              <Form.Control name="title" placeholder="Titre de l'annonce" />
+            </Form.Group>
+            <Form.Group controlId="postText" onChange={this.handleChange}>
+              <Form.Label>Texte de l'annonce</Form.Label>
+              <Form.Control name="text" as="textarea" rows="5" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
+          <Alert variant="success" show={this.state.show}>
+            Annonce postée!
+          </Alert>
+        </Container>
       </div>
     );
   }

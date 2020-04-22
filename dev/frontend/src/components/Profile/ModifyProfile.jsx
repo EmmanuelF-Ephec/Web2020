@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../NavigationBar";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 
 class ModifyProfile extends Component {
   state = {};
@@ -8,24 +8,25 @@ class ModifyProfile extends Component {
     return (
       <div>
         <NavigationBar />
-        <Form>
-          <Form.Group controlId="formGroupEmail">
-            <Form.Label>Nom</Form.Label>
-            <Form.Control placeholder="" />
-          </Form.Group>
-          <Form.Group controlId="formGroupPassword">
-            <Form.Label>Prenom</Form.Label>
-            <Form.Control placeholder="" />
-          </Form.Group>
-          <Form.Group controlId="formGroupPassword">
-            <Form.Label>eMail</Form.Label>
-            <Form.Control placeholder="" />
-          </Form.Group>
-          <Form.Group controlId="formGroupPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control placeholder="" />
-          </Form.Group>
-        </Form>
+        <Container>
+          <Form>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Ancien mot de passe</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>{" "}
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Nouveau mot de passe</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>{" "}
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Confirmer nouveau mot de passe</Form.Label>
+              <Form.Control type="password" placeholder="Password" />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              Confirmer
+            </Button>
+          </Form>
+        </Container>
       </div>
     );
   }
