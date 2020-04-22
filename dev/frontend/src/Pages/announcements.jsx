@@ -17,15 +17,13 @@ class Announcements extends Component {
     axios
       .get(`http://127.0.0.1:8000/api/annonces/`)
       .then(function (response) {
-        // handle success
         console.log("rreussite");
+
         currentComponent.setState({
           posts: response.data,
         });
-        console.log(currentComponent.state.posts);
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       });
   }
@@ -36,9 +34,13 @@ class Announcements extends Component {
       <React.Fragment>
         <NavigationBar />
         {posts.length > 0 ? (
-          posts.map((postItem) => {
-            return <PostDisplay post={postItem} />;
-          })
+          posts
+            .sort(function (a, b) {
+              return b.idannonces - a.idannonces;
+            })
+            .map((postItem) => {
+              return <PostDisplay key={postItem.idannonces} post={postItem} />;
+            })
         ) : (
           <p>No posts</p>
         )}

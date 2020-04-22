@@ -42,6 +42,5 @@ values (1,'Alors voici l''annonce concernant les nouveaux burgers');
 insert into tbChat (idUtil,texteMessage)
 values (2, 'salut ça va?');
 
-    
-    
+
     

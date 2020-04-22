@@ -16,9 +16,8 @@ class PostDisplay extends Component {
           <Style />
           <h2>
             <Link
-              maintainScrollPosition={true}
               to={{
-                pathname: `/announcements/${post.id}`,
+                pathname: `/announcements/${post.idannonces}`,
                 state: { fromDashboard: false },
               }}
             >

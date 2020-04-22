@@ -6,9 +6,11 @@ import Login from "./Pages/login";
 import FgtPass from "./Pages/fgtPass";
 import Home from "./Pages/home";
 import Announcements from "./Pages/announcements";
-import TimeTables from "./Pages/timeTables";
+import PostAdding from "./components/posts/PostAdding";
 import PostDetail from "./components/posts/PostDetail";
 import RegistrationForm from "./Pages/registration";
+import TimeTables from "./Pages/timeTables";
+import Profile from "./Pages/profile";
 
 function App() {
   return (
@@ -20,7 +22,9 @@ function App() {
           <Route path="/fgtPassword" component={FgtPass} />
           <Route path="/home" component={Home} />
           <Route path="/timeTables" component={TimeTables} />
+          <Route path="/profile" component={Profile} />
           <Route exact path="/announcements" component={Announcements} />
+          <Route exact path="/announcements/addPost" component={PostAdding} />
           <Route exact path="/announcements/:id" component={PostDetail} />
         </Switch>
       </Router>

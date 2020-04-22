@@ -14,7 +14,7 @@ class Tbannonces(models.Model):
     idutil = models.ForeignKey('Tbutilisateurs', models.DO_NOTHING, db_column='idUtil', blank=True, null=True)  # Field name made lowercase.
     titre = models.TextField(blank=True, null=True)
     texteannonce = models.TextField(db_column='texteAnnonce', blank=True, null=True)  # Field name made lowercase.
-    datecreation = models.DateTimeField(db_column='dateCreation')  # Field name made lowercase.
+    datecreation = models.DateTimeField(db_column='dateCreation', blank=True, null=True)  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'tbannonces'

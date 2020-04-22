@@ -33,6 +33,11 @@ export const NavigationBar = () => (
             <Nav.Link href="/timeTables">Horaires</Nav.Link>
           </Nav.Item>
         </Nav>
+        <Nav>
+          <Nav.Item>
+            <Nav.Link href="/profile">Profile</Nav.Link>
+          </Nav.Item>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   </Styles>

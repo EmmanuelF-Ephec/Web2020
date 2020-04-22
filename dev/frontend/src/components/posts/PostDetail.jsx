@@ -27,7 +27,7 @@ class PostDetail extends Component {
           // handle success
           console.log("rreussite");
           currentComponent.setState({
-            title: "test",
+            title: response.data.titre,
             text: response.data.texteannonce,
             didLoad: true,
           });
