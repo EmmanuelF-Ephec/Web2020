@@ -5,12 +5,15 @@ create table tbUtilisateurs (
     prenom char(50),
     mail char(100) not null,
     mdp char(100) not null,
+    dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(), 
     primary key (idUtil)
 );
 create table tbAnnonces (
 	idAnnonces int unsigned auto_increment,
     idUtil int unsigned,
+    titre long varchar,
     texteAnnonce long varchar,
+    dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(), 
     primary key (idAnnonces),
     foreign key (idUtil) references tbUtilisateurs(idUtil) on update cascade on delete set null
 );
@@ -18,6 +21,7 @@ create table tbHoraires (
 	idHoraires int unsigned auto_increment,
     idUtil int unsigned,
     url long varchar,
+    dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(), 
     primary key (idHoraires),
     foreign key (idUtil) references tbUtilisateurs(idUtil) on update cascade on delete set null
 );
@@ -25,6 +29,7 @@ create table tbChat (
 	idMessage int unsigned auto_increment,
     idUtil int unsigned,
     texteMessage long varchar,
+    dateCreation DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(), 
     primary key (idMessage),
     foreign key (idUtil) references tbUtilisateurs(idUtil) on update cascade on delete set null
 );

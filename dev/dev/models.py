@@ -12,8 +12,9 @@ from django.db import models
 class Tbannonces(models.Model):
     idannonces = models.AutoField(db_column='idAnnonces', primary_key=True)  # Field name made lowercase.
     idutil = models.ForeignKey('Tbutilisateurs', models.DO_NOTHING, db_column='idUtil', blank=True, null=True)  # Field name made lowercase.
+    titre = models.TextField(blank=True, null=True)
     texteannonce = models.TextField(db_column='texteAnnonce', blank=True, null=True)  # Field name made lowercase.
-
+    datecreation = models.DateTimeField(db_column='dateCreation')  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'tbannonces'
@@ -23,6 +24,7 @@ class Tbchat(models.Model):
     idmessage = models.AutoField(db_column='idMessage', primary_key=True)  # Field name made lowercase.
     idutil = models.ForeignKey('Tbutilisateurs', models.DO_NOTHING, db_column='idUtil', blank=True, null=True)  # Field name made lowercase.
     textemessage = models.TextField(db_column='texteMessage', blank=True, null=True)  # Field name made lowercase.
+    datecreation = models.DateTimeField(db_column='dateCreation')  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -33,7 +35,7 @@ class Tbhoraires(models.Model):
     idhoraires = models.AutoField(db_column='idHoraires', primary_key=True)  # Field name made lowercase.
     idutil = models.ForeignKey('Tbutilisateurs', models.DO_NOTHING, db_column='idUtil', blank=True, null=True)  # Field name made lowercase.
     url = models.TextField(blank=True, null=True)
-
+    datecreation = models.DateTimeField(db_column='dateCreation')  # Field name made lowercase.
     class Meta:
         managed = False
         db_table = 'tbhoraires'
@@ -46,6 +48,7 @@ class Tbutilisateurs(models.Model):
     prenom = models.CharField(max_length=50, blank=True, null=True)
     mail = models.CharField(max_length=100)
     mdp = models.CharField(max_length=100)
+    datecreation = models.DateTimeField(db_column='dateCreation')  # Field name made lowercase.
 
     class Meta:
         managed = False

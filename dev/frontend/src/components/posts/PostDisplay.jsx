@@ -8,8 +8,6 @@ const Style = styled.h2`
 `;
 
 class PostDisplay extends Component {
-  state = {};
-
   render() {
     const { post } = this.props;
     return (
@@ -24,7 +22,7 @@ class PostDisplay extends Component {
                 state: { fromDashboard: false },
               }}
             >
-              {post.title}
+              {post.titre}
             </Link>
           </h2>
         </Card>

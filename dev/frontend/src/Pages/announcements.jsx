@@ -8,7 +8,7 @@ class Announcements extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: null,
+      posts: [],
     };
   }
 
@@ -31,7 +31,7 @@ class Announcements extends Component {
   }
 
   render() {
-    const posts = this.state.posts;
+    const { posts } = this.state;
     return (
       <React.Fragment>
         <NavigationBar />
