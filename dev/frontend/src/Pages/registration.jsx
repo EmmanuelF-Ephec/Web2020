@@ -3,11 +3,15 @@ import {Form, Button, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios';
 
-const formValid = formErrors => {
+const formValid = ({ formErrors, ...rest }) => {
     let valid = true
 
     Object.values(formErrors).forEach( val => {
         val.length > 0 && (valid = false)
+    });
+
+    Object.values(rest).forEach(val => {
+        val == null && (valid = false)
     });
 
     return valid;
@@ -39,7 +43,7 @@ class RegistrationForm extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
 
-        if (formValid(this.state.formErrors)) {
+        if (formValid(this.state)) {
             
             const user = {
                 nom : this.state.lastName,
