@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../components/NavigationBar";
+import { ChatButton } from "../components/chat/ChatButton";
 
 class home extends Component {
   state = {};
@@ -7,6 +8,7 @@ class home extends Component {
     return (
       <div>
         <NavigationBar />
+        <h1>dang bro</h1>
       </div>
     );
   }

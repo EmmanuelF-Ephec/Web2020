@@ -34,6 +34,10 @@ export const NavigationBar = () => (
           </Nav.Item>
         </Nav>
         <Nav>
+          {" "}
+          <Nav.Item>
+            <Nav.Link href="/ManageProfiles">Manage profiles</Nav.Link>
+          </Nav.Item>
           <Nav.Item>
             <Nav.Link href="/profile">Profile</Nav.Link>
           </Nav.Item>

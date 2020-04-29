@@ -12,6 +12,7 @@ import RegistrationForm from "./Pages/registration";
 import TimeTables from "./Pages/timeTables";
 import Profile from "./components/Profile/profile";
 import ModifyProfile from "./components/Profile/ModifyProfile";
+import ManageProfiles from "./components/Profile/ManageProfiles";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
             path="/profile/modifyProfile"
             component={ModifyProfile}
           />
+          <Route exact path="/ManageProfiles" component={ManageProfiles} />
           <Route exact path="/announcements" component={Announcements} />
           <Route exact path="/announcements/addPost" component={PostAdding} />
           <Route exact path="/announcements/:id" component={PostDetail} />
