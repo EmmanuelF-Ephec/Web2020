@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Form, Button} from 'react-bootstrap';
 import Axios from 'axios';
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getUser } from '../actions/user'
 
 const emailVerif = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 
@@ -17,7 +20,6 @@ const formValid = ({ formErrors, ...rest }) => {
     });
 
     return valid;
-
 }
 
 class Login extends Component {
@@ -34,9 +36,20 @@ class Login extends Component {
         }
     }
 
+    static propTypes = {
+        user : PropTypes.array.isRequired,
+        getUser : PropTypes.func.isRequired
+    }
+
+    componentDidMount() {
+        this.props.getUser();
+    }
+
     handleSubmit = event => {
         event.preventDefault();
 
+        this.props.getUser();
+        /*
         if (formValid(this.state)) {
             const user = {
                 email: this.state.email, 
@@ -66,6 +79,7 @@ class Login extends Component {
         else {
             console.log("Erreur dans le formulaire");
         }
+        */
     }
     handleChange = event => {
         event.preventDefault();
@@ -128,4 +142,8 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login);
+const mapStateToProps = state => ({
+    user : state.userReducer.user
+})
+
+export default connect(mapStateToProps, {getUser})(withRouter(Login));

@@ -14,29 +14,34 @@ import Profile from "./components/Profile/profile";
 import ModifyProfile from "./components/Profile/ModifyProfile";
 import ManageProfiles from "./components/Profile/ManageProfiles";
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Login} />
-          <Route path="/registration" component={RegistrationForm} />
-          <Route path="/fgtPassword" component={FgtPass} />
-          <Route path="/home" component={Home} />
-          <Route path="/timeTables" component={TimeTables} />
-          <Route exact path="/profile" component={Profile} />
-          <Route
-            exact
-            path="/profile/modifyProfile"
-            component={ModifyProfile}
-          />
-          <Route exact path="/ManageProfiles" component={ManageProfiles} />
-          <Route exact path="/announcements" component={Announcements} />
-          <Route exact path="/announcements/addPost" component={PostAdding} />
-          <Route exact path="/announcements/:id" component={PostDetail} />
-        </Switch>
-      </Router>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route path="/registration" component={RegistrationForm} />
+            <Route path="/fgtPassword" component={FgtPass} />
+            <Route path="/home" component={Home} />
+            <Route path="/timeTables" component={TimeTables} />
+            <Route exact path="/profile" component={Profile} />
+            <Route
+              exact
+              path="/profile/modifyProfile"
+              component={ModifyProfile}
+            />
+            <Route exact path="/ManageProfiles" component={ManageProfiles} />
+            <Route exact path="/announcements" component={Announcements} />
+            <Route exact path="/announcements/addPost" component={PostAdding} />
+            <Route exact path="/announcements/:id" component={PostDetail} />
+          </Switch>
+        </Router>
+      </div>
+    </Provider>
   );
 }
 
