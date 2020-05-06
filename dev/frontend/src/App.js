@@ -14,8 +14,8 @@ import Profile from "./components/Profile/profile";
 import ModifyProfile from "./components/Profile/ModifyProfile";
 import ManageProfiles from "./components/Profile/ManageProfiles";
 
-import { Provider } from 'react-redux';
-import store from './store';
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
@@ -28,7 +28,7 @@ function App() {
             <Route path="/fgtPassword" component={FgtPass} />
             <Route path="/home" component={Home} />
             <Route path="/timeTables" component={TimeTables} />
-            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile/:id" component={Profile} />
             <Route
               exact
               path="/profile/modifyProfile"
