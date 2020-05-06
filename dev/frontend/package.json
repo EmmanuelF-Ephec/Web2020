@@ -13,10 +13,7 @@
     "react-bootstrap-icons": "^1.0.1-alpha3",
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
-<<<<<<< HEAD
-=======
     "react-router-dom": "^5.1.2",
->>>>>>> 905e7c2c0aaca2f2c162342a0ebb8f623b2bdeb0
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",

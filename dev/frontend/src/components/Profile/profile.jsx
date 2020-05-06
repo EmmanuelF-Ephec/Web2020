@@ -40,8 +40,10 @@ class profile extends Component {
         });
     }
   }
+
   render() {
     const { lastName, firstName, email, password, accountType } = this.state;
+    const { id } = this.props.match.params;
     return (
       <div>
         <NavigationBar />
@@ -54,7 +56,7 @@ class profile extends Component {
             <ListGroup.Item>Type de personnel: {accountType}</ListGroup.Item>
           </ListGroup>
           <Button variant="outline-success">
-            <Nav.Link href="/profile/modifyProfile">
+            <Nav.Link href={"/modifyProfile/" + id}>
               Modifier vos données
             </Nav.Link>
           </Button>
