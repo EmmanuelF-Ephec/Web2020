@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavigationBar } from "../NavigationBar";
 import { Container, ListGroup, Button, Nav } from "react-bootstrap";
+import { profile } from "../Profile/profile";
 const axios = require("axios").default;
 
 class ManageProfiles extends Component {
@@ -28,7 +29,6 @@ class ManageProfiles extends Component {
   }
 
   deleteAccount(idUtil) {
-    console.log(idUtil);
     axios.delete(`http://127.0.0.1:8000/api/utilisateurs/${idUtil}/`);
   }
 
@@ -38,7 +38,7 @@ class ManageProfiles extends Component {
         {userItem.nom + "  " + userItem.prenom}{" "}
         <div className="float-right">
           <Button variant="outline-success" size="sm">
-            <a href="/profile/modifyProfile">Modifier</a>
+            <a href={"/profile/" + userItem.idutil + "/"}>Voir profil</a>
           </Button>
           <Button
             onClick={() => this.deleteAccount(userItem.idutil)}

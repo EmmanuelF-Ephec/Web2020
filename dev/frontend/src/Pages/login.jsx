@@ -5,35 +5,37 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../actions/auth'
 
-const emailVerif = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+const emailVerif = RegExp(
+  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+);
 
 const formValid = ({ formErrors, ...rest }) => {
-    let valid = true
+  let valid = true;
 
-    Object.values(formErrors).forEach( val => {
-        val.length > 0 && (valid = false)
-    });
+  Object.values(formErrors).forEach((val) => {
+    val.length > 0 && (valid = false);
+  });
 
-    Object.values(rest).forEach(val => {
-        val == null && (valid = false)
-    });
+  Object.values(rest).forEach((val) => {
+    val == null && (valid = false);
+  });
 
-    return valid;
-}
+  return valid;
+};
 
 class Login extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {  
-            email: "",
-            password: "",
-             formErrors: {
-                email: "",
-                password: "",
-                formOk: ""
-            }
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      formErrors: {
+        email: "",
+        password: "",
+        formOk: "",
+      },
+    };
+  }
 
     handleSubmit = event => {
         event.preventDefault();
@@ -72,9 +74,25 @@ class Login extends Component {
     handleChange = event => {
         event.preventDefault();
 
-        const { name, value} = event.target;
-        this.setState({[name] : value} , () => console.log(this.state));
+    const { name, value } = event.target;
+    this.setState({ [name]: value }, () => console.log(this.state));
+  };
 
+  handleOnBlur = (event) => {
+    const { name, value } = event.target;
+    let formErrors = this.state.formErrors;
+
+    switch (name) {
+      case "email":
+        formErrors.email =
+          value.length > 0 && emailVerif.test(value) ? "" : "Email invalide";
+        break;
+      case "password":
+        formErrors.password =
+          value.length > 0 && value.length < 6 ? "Minimum 6 caractères" : "";
+        break;
+      default:
+        break;
     }
 
     render() { 

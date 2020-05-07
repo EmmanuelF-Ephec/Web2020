@@ -34,12 +34,8 @@ class App extends Component {
             <Route path="/fgtPassword" component={FgtPass} />
             <Route path="/home" component={Home} />
             <Route path="/timeTables" component={TimeTables} />
-            <Route exact path="/profile" component={Profile} />
-            <Route
-              exact
-              path="/profile/modifyProfile"
-              component={ModifyProfile}
-            />
+            <Route exact path="/profile/:id" component={Profile} />
+            <Route exact path="/modifyProfile/:id" component={ModifyProfile} />
             <Route exact path="/ManageProfiles" component={ManageProfiles} />
             <Route exact path="/announcements" component={Announcements} />
             <Route exact path="/announcements/addPost" component={PostAdding} />

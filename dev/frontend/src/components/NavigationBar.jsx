@@ -39,7 +39,7 @@ export const NavigationBar = () => (
             <Nav.Link href="/ManageProfiles">Manage profiles</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link href="/profile">Profile</Nav.Link>
+            <Nav.Link href="/profile/6">Profile</Nav.Link>
           </Nav.Item>
         </Nav>
       </Navbar.Collapse>
