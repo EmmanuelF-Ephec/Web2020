@@ -1,6 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { connect } from 'react-redux'
 
 import Login from "./Pages/login";
 import FgtPass from "./Pages/fgtPass";
@@ -14,16 +15,21 @@ import Profile from "./components/Profile/profile";
 import ModifyProfile from "./components/Profile/ModifyProfile";
 import ManageProfiles from "./components/Profile/ManageProfiles";
 
-import { Provider } from 'react-redux';
-import store from './store';
+import * as actions from './actions/auth';
 
-function App() {
-  return (
-    <Provider store={store}>
+class App extends Component {
+
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+    console.log(this.props)
+  }
+
+  render() {
+    return (
       <div className="App">
         <Router>
           <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" render={(props) => <Login {...this.props}/>} />
             <Route path="/registration" component={RegistrationForm} />
             <Route path="/fgtPassword" component={FgtPass} />
             <Route path="/home" component={Home} />
@@ -41,8 +47,21 @@ function App() {
           </Switch>
         </Router>
       </div>
-    </Provider>
-  );
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state)
+  return {
+    isAuthenticated: state.authReducer.token !== null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

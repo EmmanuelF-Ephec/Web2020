@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import {Form, Button} from 'react-bootstrap';
-import Axios from 'axios';
-import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { getUser } from '../actions/user'
+import {Form, Button, Spinner} from 'react-bootstrap';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom'   
+import { connect } from 'react-redux'
+import * as actions from '../actions/auth'
 
 const emailVerif = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 
@@ -36,25 +35,13 @@ class Login extends Component {
         }
     }
 
-    static propTypes = {
-        user : PropTypes.array.isRequired,
-        getUser : PropTypes.func.isRequired
-    }
-
-    componentDidMount() {
-        this.props.getUser();
-    }
-
     handleSubmit = event => {
         event.preventDefault();
 
-        this.props.getUser();
-        /*
+        
         if (formValid(this.state)) {
-            const user = {
-                email: this.state.email, 
-                password: this.state.password
-            }
+            this.props.onAuth(this.state.email, this.state.password);
+            /*
             let mail = user.email;
             Axios.get('http://127.0.0.1:8000/api/utilisateurs/?mail=' + mail)
             .then(res => {
@@ -75,11 +62,12 @@ class Login extends Component {
                     }
                 }
             })
+            */
         }
         else {
             console.log("Erreur dans le formulaire");
         }
-        */
+        
     }
     handleChange = event => {
         event.preventDefault();
@@ -89,61 +77,57 @@ class Login extends Component {
 
     }
 
-    handleOnBlur = event => {
-        const { name, value} = event.target;
-        let formErrors = this.state.formErrors;
-
-        switch(name) {
-            case 'email': 
-                formErrors.email = value.length > 0 && emailVerif.test(value)
-                ? ""
-                : "Email invalide"
-                break;
-            case 'password': 
-                formErrors.password = value.length > 0 && value.length < 6
-                ? "Minimum 6 caractères"
-                : ""
-                break;
-            default : 
-                break;
+    render() { 
+        let errorMessage = null;
+        if (this.props.error) {
+            errorMessage = (
+                <p>{this.props.error.message}</p>
+            )
         }
 
-        this.setState({formErrors} , () => console.log(this.state));
-    }
-
-    render() { 
         return (
             <div id="login">
+
+                {this.props.loading ?
+
+                <Spinner animation="border"></Spinner>
+
+                :   
+
                 <Form onSubmit={this.handleSubmit}>
                     <h1>Connexion</h1>
-                    <span className="errorMessage">{this.state.formErrors.formOk}</span>
+                    <span className="errorMessage">{errorMessage}</span>
                     <Form.Group controlId="formBasicEmail" onChange={this.handleChange} onBlur={this.handleOnBlur}>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control name="email" type="email" placeholder="Enter email" />
-                        {this.state.formErrors.email.length > 0 && (
-                        <span className="errorMessage">{this.state.formErrors.email}</span>
-                        )}
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword" onChange={this.handleChange} onBlur={this.handleOnBlur}>
                         <Form.Label>Password</Form.Label>
                         <Form.Control name="password" type="password" placeholder="Password" />
-                        {this.state.formErrors.password.length > 0 && (
-                        <span className="errorMessage">{this.state.formErrors.password}</span>
-                    )}
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Se connecter
                     </Button>
                     <a href="/fgtPassword">Mot de passe oublié ?</a>
                 </Form>
+
+                }
             </div>
           )
     }
 }
 
-const mapStateToProps = state => ({
-    user : state.userReducer.user
-})
+const mapStateToProps = (state) => {
+    return {
+        ...state.authReducer
+    }
+}
 
-export default connect(mapStateToProps, {getUser})(withRouter(Login));
+const mapDispatchToProps = dispatch => {
+    return {
+        onAuth: (email, password) => dispatch(actions.authLogin(email, password))
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
