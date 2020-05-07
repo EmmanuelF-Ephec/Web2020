@@ -1,3 +1,4 @@
+
 import React, {Component} from 'react';
 import {Form, Button, Spinner} from 'react-bootstrap';
 import axios from 'axios';
@@ -5,9 +6,8 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from '../actions/auth'
 
-const emailVerif = RegExp(
-  /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-);
+const emailVerif = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -24,23 +24,21 @@ const formValid = ({ formErrors, ...rest }) => {
 };
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-      formErrors: {
-        email: "",
-        password: "",
-        formOk: "",
-      },
-    };
-  }
+    constructor(props) {
+        super(props)
+        this.state = {  
+            email: "",
+            password: "",
+             formErrors: {
+                email: "",
+                password: "",
+                formOk: ""
+            }
+        }
+    }
 
     handleSubmit = event => {
         event.preventDefault();
-
-        
         if (formValid(this.state)) {
             this.props.onAuth(this.state.email, this.state.password);
             /*
@@ -69,10 +67,10 @@ class Login extends Component {
         else {
             console.log("Erreur dans le formulaire");
         }
-        
-    }
-    handleChange = event => {
-        event.preventDefault();
+
+  };
+  handleChange = (event) => {
+    event.preventDefault();
 
     const { name, value } = event.target;
     this.setState({ [name]: value }, () => console.log(this.state));
@@ -93,6 +91,7 @@ class Login extends Component {
         break;
       default:
         break;
+    }
     }
 
     render() { 
@@ -149,3 +148,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
+
