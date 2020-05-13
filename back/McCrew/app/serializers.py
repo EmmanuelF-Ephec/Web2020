@@ -18,8 +18,17 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Notice
-        fields = ['user', 'title', 'content']
+        fields = ['id','user', 'title', 'content']
 
+class ScheduleSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Schedule
+        fields = ['id', 'user', 'url', 'created_at']
+
+class ChatSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta: 
+        model = models.Chat
+        fields = ['id', 'user', 'message', 'created_at']
 
 class CustomJWTSerializer(TokenObtainPairSerializer):
     @classmethod

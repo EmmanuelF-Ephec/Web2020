@@ -6,8 +6,8 @@ from django.contrib.auth.models import User
 
 class Notice(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, models.DO_NOTHING, blank=True, null=True)
-    title = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User, models.DO_NOTHING, blank=False, null=False)
+    title = models.TextField(blank=False, null=False)
     content = models.TextField(blank=True, null=True)  # Field name made lowercase.
     created_at = models.DateTimeField(blank=True, null=True)  # Field name made lowercase.
 
