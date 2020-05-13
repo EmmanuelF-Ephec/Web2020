@@ -40,7 +40,7 @@ class postAdding extends Component {
         dateCreation: this.state.dateTime,
       };
       axios
-        .post("http://127.0.0.1:8000/api/annonces/", JSON.stringify(post), {
+        .post("/annonces/", JSON.stringify(post), {
           headers: {
             "Content-Type": "application/json",
           },

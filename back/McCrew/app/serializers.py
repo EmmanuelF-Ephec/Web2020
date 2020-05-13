@@ -18,7 +18,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Notice
-        fields = ['user', 'title', 'content']
+        fields = ['user','id','title', 'content', 'created_at']
 
 
 class CustomJWTSerializer(TokenObtainPairSerializer):

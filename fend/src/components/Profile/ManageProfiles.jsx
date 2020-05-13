@@ -29,7 +29,7 @@ class ManageProfiles extends Component {
   }
 
   deleteAccount(idUtil) {
-    axios.delete(`http://127.0.0.1:8000/api/utilisateurs/${idUtil}/`);
+    axios.delete(`http://127.0.0.1:8000/api/users/${idUtil}/`);
   }
 
   displayAllUsers(userItem) {
@@ -72,5 +72,7 @@ class ManageProfiles extends Component {
     );
   }
 }
+
+
 
 export default ManageProfiles;

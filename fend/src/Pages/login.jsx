@@ -37,12 +37,22 @@ class Login extends Component {
         }
     }
 
+    componentDidMount() {
+        this.props.authLogin();
+    
+        if (localStorage.getItem("access_token")) {
+            this.props.history.push("/home");
+        }
+      }
+
     handleSubmit = event => {
-        event.preventDefault();
+        event.preventDefault(); 
         if (formValid(this.state)) {
-            this.props.onAuth(this.state.email, this.state.password).then( () => {
-                console.log(this.props.token)
-                this.props.history.push("/announcements");
+            this.props.onAuth(this.state.email, this.state.password).then( (res) => {
+                console.log(res);
+                if (this.props.token != null) {
+                    this.props.history.push("/home");
+                }
             })
             /*
             let mail = user.email;
@@ -98,16 +108,18 @@ class Login extends Component {
     }
 
     render() { 
+
         let errorMessage = null;
         if (this.props.error) {
             errorMessage = (
-                <p>{this.props.error.message}</p>
+                <p>{this.props.error.data.detail}</p>
             )
         }
 
         return (
+            
             <div id="login">
-
+           
                 {this.props.loading ?
 
                 <Spinner animation="border"></Spinner>
@@ -120,11 +132,17 @@ class Login extends Component {
                     <Form.Group controlId="formBasicEmail" onChange={this.handleChange} onBlur={this.handleOnBlur}>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control name="email" type="email" placeholder="Enter email" />
+                        {this.state.formErrors.email.length> 0 && (
+                        <span className="errorMessage">{this.state.formErrors.email}</span>
+                        )}
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword" onChange={this.handleChange} onBlur={this.handleOnBlur}>
                         <Form.Label>Password</Form.Label>
                         <Form.Control name="password" type="password" placeholder="Password" />
+                        {this.state.formErrors.password.length > 0 && (
+                        <span className="errorMessage">{this.state.formErrors.password}</span>
+                        )}
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Se connecter
@@ -140,15 +158,16 @@ class Login extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ...state.authReducer
+        ...state.authReducer,
+        
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.authLogin(email, password))
+        onAuth: (email, password) => dispatch(actions.authLogin(email, password)),
+        authLogin : () => dispatch(actions.authCheckState())
     }
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));
-

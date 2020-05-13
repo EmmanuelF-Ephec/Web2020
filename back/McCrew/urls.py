@@ -29,6 +29,7 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'notices', views.NoticeViewSet)
+router.register(r'lastNotice', views.LastNoticeViewSet)
 
 schema_view = get_schema_view(
     openapi.Info(

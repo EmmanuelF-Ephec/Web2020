@@ -9,7 +9,7 @@ class PostDetail extends Component {
     this.state = {
       id: null,
       title: null,
-      text: null,
+      content: null,
       didLoad: false,
     };
   }
@@ -21,13 +21,13 @@ class PostDetail extends Component {
         id: id,
       });
       axios
-        .get(`http://127.0.0.1:8000/api/annonces/${id}/`)
+        .get(`/notices/${id}/`)
         .then(function (response) {
           // handle success
-          console.log("rreussite");
+          console.log("reussite");
           currentComponent.setState({
-            title: response.data.titre,
-            text: response.data.texteannonce,
+            title: response.data.title,
+            content: response.data.content,
             didLoad: true,
           });
         })
@@ -40,7 +40,7 @@ class PostDetail extends Component {
 
   render() {
     const { title } = this.state;
-    const { text } = this.state;
+    const { content } = this.state;
     const { didLoad } = this.state;
 
     return (
@@ -53,7 +53,7 @@ class PostDetail extends Component {
                 <h1>{title}</h1>
               </Container>
             </Jumbo>
-            <Container>{text}</Container>
+            <Container>{content}</Container>
           </div>
         ) : (
           <p> Rien de trouvé</p>

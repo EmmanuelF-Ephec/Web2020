@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from . import models, serializers
 
-from McCrew.app.serializers import UserSerializer, GroupSerializer
+from McCrew.app.serializers import UserSerializer, GroupSerializer, NoticeSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,3 +22,14 @@ class NoticeViewSet(viewsets.ModelViewSet):
     queryset = models.Notice.objects.all()
     serializer_class = serializers.NoticeSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class LastNoticeViewSet(viewsets.ModelViewSet):
+    queryset = models.Notice.objects.all().order_by('-created_at')[:1]
+    serializer_class = serializers.NoticeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class LastTenNoticesViewSet(viewsets.ModelViewSet):
+    queryset = models.Notice.objects.all().order_by('-created_at')[:10]
+    serializer_class = serializers.NoticeSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
