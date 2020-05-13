@@ -23,6 +23,7 @@ class NoticeViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.NoticeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+<<<<<<< HEAD
 class LastNoticeViewSet(viewsets.ModelViewSet):
     queryset = models.Notice.objects.all().order_by('-created_at')[:1]
     serializer_class = serializers.NoticeSerializer
@@ -33,3 +34,14 @@ class LastTenNoticesViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.NoticeSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+=======
+class ChatViewSet(viewsets.ModelViewSet):
+    queryset = models.Chat.objects.all()
+    serializer_class = serializers.ChatSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class ScheduleViewSet(viewsets.ModelViewSet):
+    queryset = models.Schedule.objects.all()
+    serializer_class = serializers.ScheduleSerializer
+    permission_classes = [permissions.IsAuthenticated]
+>>>>>>> master

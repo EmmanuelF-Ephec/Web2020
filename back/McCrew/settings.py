@@ -24,6 +24,7 @@ env = environ.Env(
     DB_PASSWORD=(str, "")
 )
 
+
 environ.Env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)

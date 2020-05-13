@@ -29,7 +29,12 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 router.register(r'notices', views.NoticeViewSet)
+<<<<<<< HEAD
 router.register(r'lastNotice', views.LastNoticeViewSet)
+=======
+router.register(r'chat', views.ChatViewSet)
+router.register(r'schedule', views.ScheduleViewSet)
+>>>>>>> master
 
 schema_view = get_schema_view(
     openapi.Info(
