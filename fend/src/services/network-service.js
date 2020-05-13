@@ -20,7 +20,6 @@ Axios.interceptors.request.use((config) => {
 Axios.interceptors.response.use(
   (response) => {
     return response;
-<<<<<<< HEAD
 }, (error) =>  {
     if (!error.response.config.url.match(/[/]token([/refresh])?/)  ) {
 
@@ -34,15 +33,3 @@ Axios.interceptors.response.use(
     }
     return Promise.reject(error.response);
 });
-=======
-  },
-  (error) => {
-    switch (error.response.status) {
-      case 401:
-        localStorage.clear();
-
-        break;
-    }
-  }
-);
->>>>>>> master

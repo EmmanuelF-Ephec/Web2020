@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavigationBar } from "../NavigationBar";
+import  NavigationBar from "../NavigationBar";
 import { Container, Jumbotron as Jumbo } from "react-bootstrap";
 const axios = require("axios").default;
 

@@ -18,11 +18,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Notice
-<<<<<<< HEAD
         fields = ['user','id','title', 'content', 'created_at']
-=======
-        fields = ['id','user', 'title', 'content']
->>>>>>> master
 
 class ScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

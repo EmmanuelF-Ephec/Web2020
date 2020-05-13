@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavigationBar } from "../NavigationBar";
+import NavigationBar from "../NavigationBar";
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import axios from "axios";
 const formValid = (formErrors) => {

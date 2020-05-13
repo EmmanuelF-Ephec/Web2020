@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavigationBar } from "../NavigationBar";
+import NavigationBar from "../NavigationBar";
 import { Container, ListGroup, Button, Nav } from "react-bootstrap";
 import { profile } from "../Profile/profile";
 const axios = require("axios").default;
