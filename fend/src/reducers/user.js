@@ -1,7 +1,13 @@
 import { GET_USER } from "../actions/types.js"
 
 const initialState = {
-    user: []
+    user: {
+        email: "admin@admin.com",
+        lastName: 'Foureau',
+        firstName: 'Emmanuel',
+        password: 1234,
+        is_staff: 1
+    }
 }
 
 export default function(state=initialState, action) {

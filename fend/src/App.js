@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 import Login from "./Pages/login";
 import FgtPass from "./Pages/fgtPass";
-import Home from "./Pages/home";
+import Home from "./Pages/home/home";
 import Announcements from "./Pages/announcements";
 import PostAdding from "./components/posts/PostAdding";
 import PostDetail from "./components/posts/PostDetail";
@@ -19,10 +19,6 @@ import * as actions from './actions/auth';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.onTryAutoSignup();
-    console.log(this.props)
-  }
 
   render() {
     return (
@@ -48,8 +44,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
+
     isAuthenticated: state.authReducer.token !== null
   }
 }

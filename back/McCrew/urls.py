@@ -28,6 +28,7 @@ from McCrew.app.serializers import CustomJWTSerializer
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'notices', views.NoticeViewSet)
+router.register(r'lastNotice', views.LastNoticeViewSet)
 router.register(r'chat', views.ChatViewSet)
 router.register(r'schedule', views.ScheduleViewSet)
 

@@ -52,7 +52,7 @@ class RegistrationForm extends Component {
                 mail : this.state.email,
                 mdp : this.state.password
             };
-            axios.post('http://127.0.0.1:8000/api/utilisateurs/', 
+            axios.post('/users/', 
             JSON.stringify(user),
             {headers : {
                 "Content-Type": "application/json"

@@ -10,6 +10,7 @@ const Style = styled.h2`
 class PostDisplay extends Component {
   render() {
     const { post } = this.props;
+    console.log({post})
     return (
       <div>
         <Card body>
@@ -17,11 +18,11 @@ class PostDisplay extends Component {
           <h2>
             <Link
               to={{
-                pathname: `/announcements/${post.idannonces}`,
+                pathname: `/announcements/${post.id}`,
                 state: { fromDashboard: false },
               }}
             >
-              {post.titre}
+              {post.title}
             </Link>
           </h2>
         </Card>

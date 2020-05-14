@@ -12,7 +12,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Notice
-        fields = ['id','user', 'title', 'content']
+        fields = ['user','id','title', 'content', 'created_at']
 
 class ScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

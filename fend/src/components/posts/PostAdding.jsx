@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavigationBar } from "../NavigationBar";
+import NavigationBar from "../NavigationBar";
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import axios from "axios";
 const formValid = (formErrors) => {
@@ -40,7 +40,7 @@ class postAdding extends Component {
         dateCreation: this.state.dateTime,
       };
       axios
-        .post("http://127.0.0.1:8000/api/annonces/", JSON.stringify(post), {
+        .post("/annonces/", JSON.stringify(post), {
           headers: {
             "Content-Type": "application/json",
           },
