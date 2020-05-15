@@ -3,7 +3,7 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from . import models, serializers
 
-from McCrew.app.serializers import UserSerializer, GroupSerializer, NoticeSerializer
+from McCrew.app.serializers import UserSerializer, NoticeSerializer
 
 
 class UserViewSet(viewsets.ModelViewSet):

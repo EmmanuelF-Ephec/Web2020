@@ -6,7 +6,7 @@ from . import models
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups', ]
+        fields = [ 'email', 'last_name', 'first_name', 'password', 'is_staff' ]
 
 
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):

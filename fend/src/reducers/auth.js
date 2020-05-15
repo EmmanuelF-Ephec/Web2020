@@ -4,7 +4,14 @@ import { updateObject } from "../store/utility";
 const initialState = {
     token: null,
     error: null, 
-    loading : false
+    loading : false,
+    user: {
+        email: "admin@admin.com",
+        lastName: 'Foureau',
+        firstName: 'Emmanuel',
+        password: 1234,
+        is_staff: 1
+    }
 }
 
 const authStart = (state, action) => {

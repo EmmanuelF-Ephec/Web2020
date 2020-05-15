@@ -2,6 +2,8 @@ import React , {Component} from 'react'
 import {Form, Button, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios';
+import * as actions from '../actions/user'
+import {connect} from 'react-redux'
 
 const formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -24,12 +26,12 @@ class RegistrationForm extends Component {
         super(props)
 
         this.state = {
-            firstName: null,
-            lastName: null,
+            first_name: null,
+            last_name: null,
             password: null,
             passwordCheck: null,
             email: null,
-            typeCompte: 'admin',
+            is_staff: "0",
             formErrors: {
                 firstName: "",
                 lastName: "",
@@ -46,21 +48,13 @@ class RegistrationForm extends Component {
         if (formValid(this.state)) {
             
             const user = {
-                nom : this.state.lastName,
-                prenom : this.state.firstName,
-                typecompte : this.state.typeCompte,
-                mail : this.state.email,
-                mdp : this.state.password
+                last_name : this.state.last_name,
+                first_name : this.state.first_name,
+                is_staff : this.state.is_staff,
+                email : this.state.email,
+                password : this.state.password
             };
-            axios.post('/users/', 
-            JSON.stringify(user),
-            {headers : {
-                "Content-Type": "application/json"
-            }
-            }
-        ).then(res => {
-            console.log(res.data);
-        })
+            this.props.onCreate(user);
         }
         else {
             console.log("Erreur dans le formulaire");
@@ -69,42 +63,49 @@ class RegistrationForm extends Component {
 
     handleChange = (event) => {
         event.preventDefault();
-  
+
         const { name, value} = event.target
         let formErrors = this.state.formErrors;
-        
 
-        switch (name) {
-            case 'firstName':
-                formErrors.firstName = value.length < 3 && value.length > 0 
-                ? "minimum 3 caractères nécessaires"
-                : ""
-                break;
-            case 'lastName':
-                formErrors.lastName = value.length < 3 && value.length > 0 
-                ? "minimum 6 caractères nécessaires"
-                : ""
-                break;
-            case 'password':
-                formErrors.password = value.length < 6 && value.length > 0
-                ? "minimum 6 caractères nécessaires"
-                : ""
-                break;
-            case 'passwordCheck':
-                formErrors.passwordCheck = value.length < 6 && value.length > 0 
-                ? "minimum 6 caractères"
-                : ""
-                break;
-            case 'email':
-                formErrors.email = emailVerif.test(value) && value.length > 0 
-                ? ""
-                : "Email invalide"
-                break;
-            default:        
-                break;
+        if (name === "accountType") {
+            console.log(value);
+            this.setState({name:value});
+            console.log(this.state);
+            
+        }
+        else {
+            switch (name) {
+                case 'first_name':
+                    formErrors.firstName = value.length < 3 && value.length > 0 
+                    ? "minimum 3 caractères nécessaires"
+                    : ""
+                    break;
+                case 'last_name':
+                    formErrors.lastName = value.length < 3 && value.length > 0 
+                    ? "minimum 6 caractères nécessaires"
+                    : ""
+                    break;
+                case 'password':
+                    formErrors.password = value.length < 4 && value.length > 0
+                    ? "minimum 6 caractères nécessaires"
+                    : ""
+                    break;
+                case 'passwordCheck':
+                    formErrors.passwordCheck = value.length < 4 && value.length > 0 
+                    ? "minimum 6 caractères"
+                    : ""
+                    break;
+                case 'email':
+                    formErrors.email = emailVerif.test(value) && value.length > 0 
+                    ? ""
+                    : "Email invalide"
+                    break;
+                default:        
+                    break;
         }
 
         this.setState({formErrors, [name] : value} , () => console.log(this.state))
+        }
     }
 
 
@@ -116,14 +117,14 @@ class RegistrationForm extends Component {
                 <Form.Row>
                     <Form.Group as={Col} onChange={this.handleChange}>
                     <Form.Label>Prénom</Form.Label>
-                    <Form.Control name="firstName" placeholder="Entrez le prénom"/>
+                    <Form.Control name="first_name" placeholder="Entrez le prénom"/>
                     {this.state.formErrors.firstName.length > 0 && (
                         <span className="errorMessage">{this.state.formErrors.firstName}</span>
                     )}
                     </Form.Group>
                     <Form.Group as={Col} onChange={this.handleChange}>
                     <Form.Label>Nom</Form.Label>
-                    <Form.Control name="lastName" placeholder="Entrez le nom" />
+                    <Form.Control name="last_name" placeholder="Entrez le nom" />
                     {this.state.formErrors.lastName.length > 0 && (
                         <span className="errorMessage">{this.state.formErrors.lastName}</span>
                     )}
@@ -156,6 +157,13 @@ class RegistrationForm extends Component {
                         <span className="errorMessage">{this.state.formErrors.email}</span>
                     )}
                 </Form.Group>
+                <Form.Group>
+                    <Form.Label>Type d'employé</Form.Label>
+                    <Form.Control name='is_staff' as="select" onChange={this.handleChange}>
+                        <option value="0">Employé</option>
+                        <option value="1">Manager</option>
+                    </Form.Control>
+                </Form.Group>
                 <Button variant="primary" type="submit">
                     Envoyer
                 </Button>
@@ -164,5 +172,12 @@ class RegistrationForm extends Component {
         );
     }
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onCreate: (user) => dispatch(actions.createUser(user)),
+    }
+
+}
  
-export default RegistrationForm;
+export default connect("", mapDispatchToProps)(RegistrationForm);

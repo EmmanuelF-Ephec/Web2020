@@ -15,10 +15,8 @@ class ManageProfiles extends Component {
   componentDidMount() {
     let currentComponent = this;
     axios
-      .get(`http://127.0.0.1:8000/api/utilisateurs/`)
+      .get(`api/users/`)
       .then(function (response) {
-        console.log("rreussite");
-
         currentComponent.setState({
           users: response.data,
         });
@@ -29,7 +27,7 @@ class ManageProfiles extends Component {
   }
 
   deleteAccount(idUtil) {
-    axios.delete(`http://127.0.0.1:8000/api/users/${idUtil}/`);
+    axios.delete(`api/users/${idUtil}/`);
   }
 
   displayAllUsers(userItem) {
