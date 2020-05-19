@@ -108,7 +108,6 @@ class Login extends Component {
     }
 
     render() { 
-
         let errorMessage = null;
         if (this.props.error) {
             errorMessage = (

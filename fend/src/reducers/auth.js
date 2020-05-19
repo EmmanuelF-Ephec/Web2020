@@ -5,13 +5,7 @@ const initialState = {
     token: null,
     error: null, 
     loading : false,
-    user: {
-        email: "admin@admin.com",
-        lastName: 'Foureau',
-        firstName: 'Emmanuel',
-        password: 1234,
-        is_staff: 1
-    }
+    user: {},
 }
 
 const authStart = (state, action) => {
@@ -25,7 +19,8 @@ const authSuccess = (state, action) => {
     return updateObject(state, {
         token: action.token,
         error: null,
-        loading: false
+        loading: false,
+        user: action.user,
     });
 }
 

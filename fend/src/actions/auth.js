@@ -1,5 +1,6 @@
 import * as type from './types';
 import axios from 'axios';
+var jwt_decode = require('jwt-decode');
 
 export const authStart = () => {
     return {
@@ -11,6 +12,7 @@ export const authSuccess = token => {
     return {
         type: type.AUTH_SUCCESS,
         token: token,
+        user : jwt_decode(token.access),
     }
 }
 

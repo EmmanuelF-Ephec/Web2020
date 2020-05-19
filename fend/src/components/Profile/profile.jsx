@@ -22,11 +22,10 @@ class profile extends Component {
         <NavigationBar />
         <Container>
           <ListGroup variant="flush">
-            <ListGroup.Item>Nom: {this.props.user.lastName}</ListGroup.Item>
-            <ListGroup.Item>Prenom: {this.props.user.firstName} </ListGroup.Item>
+            <ListGroup.Item>Nom: {this.props.user.last_name}</ListGroup.Item>
+            <ListGroup.Item>Prenom: {this.props.user.first_name} </ListGroup.Item>
             <ListGroup.Item>Address e-Mail: {this.props.user.email}</ListGroup.Item>
-            <ListGroup.Item>Mot de passe: {this.props.user.password}</ListGroup.Item>
-            <ListGroup.Item>Type de personnel: {this.props.user.is_staff == 1 
+            <ListGroup.Item>Type de personnel: {this.props.user.is_staff
             ? "Manager"
             : " Employe"}</ListGroup.Item>
           </ListGroup>
