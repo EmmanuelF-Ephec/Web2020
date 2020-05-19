@@ -3,7 +3,7 @@ import NavigationBar from "../NavigationBar";
 import RegistrationForm from "../../Pages/registration"
 import {  Button, Table, Alert } from "react-bootstrap";
 import { connect } from 'react-redux';
-import {getUsers, deleteUser} from '../../actions/users';
+import {getUsers, deleteUser, showForm, showAlert} from '../../actions/users';
  const axios = require("axios").default;
 
 class ManageProfiles extends Component {
@@ -11,8 +11,6 @@ class ManageProfiles extends Component {
     super(props);
     this.state = {
       deleted: false,
-      created: false,
-      showForm : false,
       messageAlert : ''
       }
     };
@@ -23,7 +21,8 @@ class ManageProfiles extends Component {
 
   showForm = (event) => {
     event.preventDefault();
-    this.setState({showForm: true});
+    this.props.showAlert("");
+    this.props.showForm(this.props.show);
   }
 
   onDelete = (idUtil) => {
@@ -32,17 +31,16 @@ class ManageProfiles extends Component {
 
 
   render() {
-    const {created, deleted, messageAlert, showForm} = this.state;
     return (
       
       <div>
         <NavigationBar />
         <Fragment>
           <h2>Utilisateurs</h2>
-          {created || deleted
-          ? <Alert>{messageAlert}</Alert>
-          : ""}
-          {showForm
+          {this.props.alertMessage === ""
+          ? ""
+          :  <Alert>{this.props.alertMessage}</Alert>}
+          {this.props.show
           ? <RegistrationForm />
           : ""}
           <Table>
@@ -77,7 +75,8 @@ class ManageProfiles extends Component {
 
 const mapStateToProps = state => ({
   users : state.userReducer.users,
-  formShow : state.userReducer
+  show : state.userReducer.show,
+  alertMessage : state.userReducer.alertMessage
 })
 
-export default connect(mapStateToProps, { getUsers, deleteUser })(ManageProfiles);
+export default connect(mapStateToProps, { getUsers, deleteUser, showForm, showAlert })(ManageProfiles);

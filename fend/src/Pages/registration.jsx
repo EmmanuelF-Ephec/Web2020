@@ -2,6 +2,8 @@ import React , {Component} from 'react'
 import {Form, Button, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios';
+import {connect} from 'react-redux'
+import {createUser} from '../actions/users'
 
 const formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -54,13 +56,7 @@ class RegistrationForm extends Component {
                 password : this.state.password,
                 username : this.state.email
             };
-            axios.post('users/', user)
-            .then(res => {
-                console.log(res)
-            })
-            .catch(
-                err => console.log(err) 
-            )
+            this.props.createUser(user);
         }
         else {
             console.log("Erreur dans le formulaire");
@@ -176,6 +172,5 @@ class RegistrationForm extends Component {
     }
 }
 
-
  
-export default (RegistrationForm);
+export default connect("", {createUser})(RegistrationForm);
