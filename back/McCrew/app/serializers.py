@@ -28,14 +28,17 @@ class CustomJWTSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
+        token["userId"] = user.id
+
         return token
+
 
     def validate(self, attrs):
         credentials = {
             'username': '',
             'password': attrs.get("password")
         }
-
+        print (User.objects.filter(email=attrs.get("username")).first())
         user_obj = User.objects.filter(email=attrs.get("username")).first() or User.objects.filter(
             username=attrs.get("username")).first()
         if user_obj:
