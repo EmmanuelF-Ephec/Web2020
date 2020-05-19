@@ -43,7 +43,7 @@ class profile extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state.userReducer
+    ...state.authReducer
   }
 }
 
