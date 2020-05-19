@@ -3,7 +3,7 @@ import NavigationBar from "../NavigationBar";
 import { Container, ListGroup, Button, Nav } from "react-bootstrap";
 import { profile } from "../Profile/profile";
 const axios = require("axios").default;
-
+var jwt_decode = require("jwt-decode");
 class ManageProfiles extends Component {
   constructor(props) {
     super(props);
@@ -13,6 +13,7 @@ class ManageProfiles extends Component {
   }
 
   componentDidMount() {
+   
     let currentComponent = this;
     axios
       .get(`api/users/`)
@@ -70,7 +71,5 @@ class ManageProfiles extends Component {
     );
   }
 }
-
-
 
 export default ManageProfiles;

@@ -5,7 +5,6 @@ import axios from 'axios';
 import { withRouter } from 'react-router-dom'   
 import { connect } from 'react-redux'
 import * as actions from '../actions/auth'
-
 const emailVerif = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 
 

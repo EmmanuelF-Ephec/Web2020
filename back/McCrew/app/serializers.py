@@ -28,7 +28,11 @@ class CustomJWTSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
-        token["userId"] = user.id
+        token["email"] = user.email
+        token["first_name"] = user.first_name
+        token["last_name"] = user.last_name
+        token["is_staff"] = user.is_staff
+
 
         return token
 
@@ -38,7 +42,6 @@ class CustomJWTSerializer(TokenObtainPairSerializer):
             'username': '',
             'password': attrs.get("password")
         }
-        print (User.objects.filter(email=attrs.get("username")).first())
         user_obj = User.objects.filter(email=attrs.get("username")).first() or User.objects.filter(
             username=attrs.get("username")).first()
         if user_obj:
