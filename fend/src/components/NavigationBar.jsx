@@ -3,6 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import styled from "styled-components";
 import {connect} from 'react-redux'
+import { NavItem } from "react-bootstrap";
 
 const Styles = styled.div`
   .navbar {
@@ -21,6 +22,12 @@ const Styles = styled.div`
 class NavigationBar extends Component {
   constructor(props) {
     super(props);
+  }
+
+  logout = () => {
+    localStorage.removeItem("acces_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("expirationDate")
   }
 
   render() {
@@ -51,6 +58,9 @@ class NavigationBar extends Component {
               <Nav.Item>
                 <Nav.Link href="/profile/6">Profile</Nav.Link>
               </Nav.Item>
+              <Nav.Item>
+                <Nav.Link href="/" onClick={this.logout}>Log out</Nav.Link>
+              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
@@ -61,7 +71,7 @@ class NavigationBar extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state.userReducer
+    ...state.authReducer
   }
 }
 
