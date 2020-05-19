@@ -1,12 +1,17 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from django.contrib.auth.hashers import make_password
 from . import models
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = [ 'email', 'last_name', 'first_name', 'password', 'is_staff' ]
+        fields = [ 'id', 'email', 'last_name', 'first_name', 'password', 'is_staff', 'username' ]
+    
+    def validate_password (self, password) :
+        print(password)
+        return make_password(password)
 
 
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
