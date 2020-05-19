@@ -10,7 +10,7 @@ export const authStart = () => {
 export const authSuccess = token => {
     return {
         type: type.AUTH_SUCCESS,
-        token: token
+        token: token,
     }
 }
 

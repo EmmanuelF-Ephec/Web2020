@@ -2,8 +2,8 @@ import React , {Component} from 'react'
 import {Form, Button, Col} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.css'
 import axios from 'axios';
-import * as actions from '../actions/user'
 import {connect} from 'react-redux'
+import {createUser} from '../actions/users'
 
 const formValid = ({ formErrors, ...rest }) => {
     let valid = true
@@ -32,6 +32,7 @@ class RegistrationForm extends Component {
             passwordCheck: null,
             email: null,
             is_staff: "0",
+            username: "",
             formErrors: {
                 firstName: "",
                 lastName: "",
@@ -52,9 +53,10 @@ class RegistrationForm extends Component {
                 first_name : this.state.first_name,
                 is_staff : this.state.is_staff,
                 email : this.state.email,
-                password : this.state.password
+                password : this.state.password,
+                username : this.state.email
             };
-            this.props.onCreate(user);
+            this.props.createUser(user);
         }
         else {
             console.log("Erreur dans le formulaire");
@@ -68,10 +70,7 @@ class RegistrationForm extends Component {
         let formErrors = this.state.formErrors;
 
         if (name === "accountType") {
-            console.log(value);
             this.setState({name:value});
-            console.log(this.state);
-            
         }
         else {
             switch (name) {
@@ -173,11 +172,5 @@ class RegistrationForm extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onCreate: (user) => dispatch(actions.createUser(user)),
-    }
-
-}
  
-export default connect("", mapDispatchToProps)(RegistrationForm);
+export default connect("", {createUser})(RegistrationForm);
