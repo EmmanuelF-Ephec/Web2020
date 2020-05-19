@@ -1,8 +1,8 @@
 .idea
-<<<<<<< HEAD
 .env
 env
-=======
-env
-.env
->>>>>>> master
+
+McCrew/__pycache__/settings.cpython-38.pyc
+McCrew/__pycache__/urls.cpython-38.pyc
+McCrew/app/__pycache__/serializers.cpython-38.pyc
+McCrew/app/__pycache__/views.cpython-38.pyc
