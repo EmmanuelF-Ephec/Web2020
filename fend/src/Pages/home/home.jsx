@@ -59,7 +59,7 @@ class home extends Component {
                   <p>
                     {this.state.lastPost.content}
                   </p>
-                  {this.props.user.is_staff == 1 
+                  {this.props.user.is_staff 
                   
                   ?
                   <Button variant="primary" onClick={this.handleClick}>

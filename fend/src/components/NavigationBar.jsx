@@ -25,9 +25,10 @@ class NavigationBar extends Component {
   }
 
   logout = () => {
-    localStorage.removeItem("acces_token");
+    localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
-    localStorage.removeItem("expirationDate")
+    localStorage.removeItem("expirationDate");
+    localStorage.removeItem("user");
   }
 
   render() {
@@ -49,7 +50,7 @@ class NavigationBar extends Component {
             </Nav>
             <Nav>
               {" "}
-              {this.props.user.is_staff == 1 ?
+              {this.props.user.is_staff ?
               <Nav.Item>
                 <Nav.Link href="/ManageProfiles">Manage profiles</Nav.Link>
               </Nav.Item>

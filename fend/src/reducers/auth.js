@@ -1,11 +1,12 @@
 import * as types from '../actions/types'
 import { updateObject } from "../store/utility";
+var jwt_decode = require('jwt-decode');
 
 const initialState = {
     token: null,
     error: null, 
     loading : false,
-    user: {},
+    user : JSON.parse(localStorage.getItem('user')) 
 }
 
 const authStart = (state, action) => {
@@ -20,7 +21,7 @@ const authSuccess = (state, action) => {
         token: action.token,
         error: null,
         loading: false,
-        user: action.user,
+        user: action.user
     });
 }
 

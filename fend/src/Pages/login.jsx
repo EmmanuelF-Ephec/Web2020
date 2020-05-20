@@ -9,8 +9,8 @@ import * as actions from '../actions/auth'
 const emailVerif = RegExp(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 
 
-const formValid = ({ formErrors, ...rest }) => {
-  let valid = true;
+const formValidation = ({ formErrors, ...rest }) => {
+  let valid = false;
 
   Object.values(formErrors).forEach((val) => {
     val.length > 0 && (valid = false);
@@ -32,13 +32,15 @@ class Login extends Component {
              formErrors: {
                 email: "",
                 password: "",
-                formOk: ""
+            },
+            formValid: {
+                email: false,
+                password: false,
             }
         }
     }
 
     componentDidMount() {
-        this.props.authLogin();
     
         if (localStorage.getItem("access_token")) {
             this.props.history.push("/home");
@@ -48,6 +50,7 @@ class Login extends Component {
     handleSubmit = event => {
         event.preventDefault(); 
         if (formValid(this.state)) {
+            console.log('non')
             this.props.onAuth(this.state.email, this.state.password).then( (res) => {
                 console.log(res);
                 if (this.props.token != null) {
@@ -95,12 +98,15 @@ class Login extends Component {
 
     switch (name) {
       case "email":
-        formErrors.email =
-          value.length > 0 && emailVerif.test(value) ? "" : "Email invalide";
+          if(value.length > 0 && emailVerif.test(value)) {
+            formErrors = "";
+            formValid.email
+          }
+          
         break;
       case "password":
         formErrors.password =
-          value.length > 0 && value.length < 4 ? "Minimum 4 caractères" : "";
+          value.length > 0 && value.length < 4 ? "Minimum 4 caractères" : "",;
         break;
       default:
         break;
@@ -165,7 +171,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: (email, password) => dispatch(actions.authLogin(email, password)),
-        authLogin : () => dispatch(actions.authCheckState())
     }
 }
 
