@@ -158,3 +158,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+CSRF_COOKIE_NAME = "XSRF-TOKEN"
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'../fend/src/media')
+
+MEDIA_URL ='/media/'
