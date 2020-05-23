@@ -40,11 +40,7 @@ class postAdding extends Component {
         dateCreation: this.state.dateTime,
       };
       axios
-        .post("/annonces/", JSON.stringify(post), {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+        .post("/annonces/", JSON.stringify(post))
         .then((res) => {
           console.log(res.data);
         });

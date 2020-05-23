@@ -35,3 +35,8 @@ class ScheduleViewSet(viewsets.ModelViewSet):
     queryset = models.Schedule.objects.all()
     serializer_class = serializers.ScheduleSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class changePasswordViewSet(viewsets.ModelViewSet):
+    queryset = models.User.objects.all()
+    serializer_class = serializers.changePasswordSerializer
+    permission_classes = [permissions.IsAuthenticated]

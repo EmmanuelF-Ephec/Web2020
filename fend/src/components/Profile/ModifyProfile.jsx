@@ -1,81 +1,47 @@
 import React, { Component } from "react";
 import  NavigationBar  from "../NavigationBar";
 import { Form, Button, Container } from "react-bootstrap";
+import {connect} from 'react-redux'
 const axios = require("axios").default;
 
 class ModifyProfile extends Component {
   state = {
-    password: null,
     oldPassword: null,
     firstPassword: null,
     secondPassword: null,
     formErrors: {
-      oldPasswordMatch: "",
-      newPasswordMatch: "",
-      minimumPassword: "",
+     oldPassword: "",
+     firstPassword: "",
+     secondPassword: "",
     },
-  };
-
-  componentDidMount() {
-    let currentComponent = this;
-    if (this.props.match) {
-      const { id } = this.props.match.params;
-      axios
-        .get(`http://127.0.0.1:8000/api/utilisateurs/${id}/`)
-        .then(function (response) {
-          currentComponent.setState({
-            password: response.data.mdp,
-          });
-        })
-        .catch(function (error) {
-          // handle error
-          console.log(error);
-        });
+    formValid: {
+      oldPassword: false,
+      firstPassword: false,
+      secondPassword: false
     }
-  }
+  };
+  
   handleSubmit = (event) => {
     event.preventDefault();
-    let currentComponent = this;
-    const { password, oldPassword, firstPassword, secondPassword } = this.state;
-
-    let formErrors = this.state.formErrors;
-    if (
-      password != null &&
-      oldPassword != null &&
-      firstPassword != null &&
-      secondPassword != null
-    ) {
-      formErrors.oldPasswordMatch =
-        password == oldPassword
-          ? ""
-          : "Votre mot de passe doit correspondre avec votre ancien mot de passe.";
-      formErrors.newPasswordMatch =
-        firstPassword == secondPassword
-          ? ""
-          : "Vos mots de passent ne correspondent pas";
-      if (
-        formErrors.oldPasswordMatch.length > 0 ||
-        formErrors.newPasswordMatch.length > 0
-      ) {
-        this.setState({ formErrors });
-      } else {
-        console.log("Je suis la requete axios");
-
-        axios.put(
-          `http://127.0.0.1:8000/api/utilisateurs/${this.props.match.params.id}/`,
-          {
-            idutil: 4,
-            typecompte: "admin",
-            nom: "testeur",
-            prenom: "jean",
-            mail: "dqzdsqd@mdl.com",
-            mdp: currentComponent.firstPassword,
-            datecreation: "2020-04-09T04:00:00Z",
-          }
-        );
+    const formValid = this.state.formValid;
+    if (formValid.oldPassword && formValid.firstPassword && formValid.secondPassword) {
+     
+      axios.post('/token/', JSON.stringify({
+        email: this.props.email,
+        password: this.state.oldPassword
+      }))
+      .then( res => {
+        console.log(res)
       }
-    } else {
-      alert("Vous devez inserer des valeurs dans le formulaire");
+        
+      )
+      .catch(err => {
+        console.log(err)
+      })
+    }
+    else {
+      if (this.state.oldPassword === 0 || this.state.oldPassword < 4) {
+      }
     }
   };
 
@@ -84,32 +50,62 @@ class ModifyProfile extends Component {
 
     const { name, value } = event.target;
     let formErrors = this.state.formErrors;
+    const formValid = this.state.formValid
+
+
     switch (name) {
       case "firstPassword":
-        formErrors.minimumPassword =
-          value.length < 6 && value.length > 0
-            ? "minimum 6 caractères nécessaires"
-            : "";
+      
+        if (value.length > 0 && value.length >=4) {
+          formErrors.firstPassword= "";
+          formValid.firstPassword = true
+        }
+        else {
+          formErrors.firstPassword = "Mimimum 4 caractères";
+          formValid.firstPassword = false;
+        }
+        break;
+      case "secondPassword": 
+        
+        if (value === this.state.firstPassword) {
+          formErrors.secondPassword= "";
+          formValid.secondPassword = true
+        }
+        else {
+          formErrors.secondPassword = "Les mots de passe ne correspondent pas";
+          formValid.secondPassword = false;
+        }
+        break;
+      case "oldPassword": 
+        if (value.length > 0 && value.length >= 4) {
+          formErrors.oldPassword= "";
+          formValid.oldPassword = true
+        }
+        else {
+          formValid.oldPassword = false;
+        }
+        break;
+      default:
         break;
     }
-    this.setState({ [name]: value }, () => console.log(this.state));
+    this.setState({ [name]: value });
   };
 
   render() {
     return (
       <div>
         <NavigationBar />
-        <Container>
+        
           <Form onSubmit={this.handleSubmit}>
             <Form.Group
               controlId="formBasicPassword"
               onChange={this.handleChange}
             >
               <Form.Label>Ancien mot de passe</Form.Label>
-              <Form.Control name="oldPassword" placeholder="Password" />
-              {this.state.formErrors.oldPasswordMatch.length > 0 && (
+              <Form.Control name="oldPassword" type="password" placeholder="Password" />
+              {this.state.formErrors.oldPassword.length > 0 && (
                 <span className="errorMessage">
-                  {this.state.formErrors.oldPasswordMatch}
+                  {this.state.formErrors.oldPassword}
                 </span>
               )}
             </Form.Group>{" "}
@@ -118,10 +114,10 @@ class ModifyProfile extends Component {
               onChange={this.handleChange}
             >
               <Form.Label>Nouveau mot de passe</Form.Label>
-              <Form.Control name="firstPassword" placeholder="Password" />
-              {this.state.formErrors.minimumPassword.length > 0 && (
+              <Form.Control name="firstPassword" type='password' placeholder="Password" />
+              {this.state.formErrors.firstPassword.length > 0 && (
                 <span className="errorMessage">
-                  {this.state.formErrors.minimumPassword}
+                  {this.state.formErrors.firstPassword}
                 </span>
               )}
             </Form.Group>{" "}
@@ -130,10 +126,10 @@ class ModifyProfile extends Component {
               onChange={this.handleChange}
             >
               <Form.Label>Confirmer nouveau mot de passe</Form.Label>
-              <Form.Control name="secondPassword" placeholder="Password" />
-              {this.state.formErrors.newPasswordMatch.length > 0 && (
+              <Form.Control name="secondPassword" type="password" placeholder="Password" />
+              {this.state.formErrors.secondPassword.length > 0 && (
                 <span className="errorMessage">
-                  {this.state.formErrors.newPasswordMatch}
+                  {this.state.formErrors.secondPassword}
                 </span>
               )}
             </Form.Group>
@@ -141,9 +137,16 @@ class ModifyProfile extends Component {
               Confirmer
             </Button>
           </Form>
-        </Container>
+        
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.authReducer.user
+  }
+}
+
 export default ModifyProfile;
