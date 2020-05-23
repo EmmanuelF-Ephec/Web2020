@@ -15,6 +15,7 @@ import Profile from "./components/Profile/profile";
 import ModifyProfile from "./components/Profile/ModifyProfile";
 import ManageProfiles from "./components/Profile/ManageProfiles";
 
+
 import * as actions from './actions/auth';
 
 class App extends Component {

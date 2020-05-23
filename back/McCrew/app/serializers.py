@@ -10,7 +10,6 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         fields = [ 'id', 'email', 'last_name', 'first_name', 'password', 'is_staff', 'username' ]
     
     def validate_password (self, password) :
-        print(password)
         return make_password(password)
 
 
@@ -22,7 +21,7 @@ class NoticeSerializer(serializers.HyperlinkedModelSerializer):
 class ScheduleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Schedule
-        fields = ['id', 'user', 'url', 'created_at']
+        fields = ['id', 'name', 'url', 'created_at']
 
 class ChatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta: 
