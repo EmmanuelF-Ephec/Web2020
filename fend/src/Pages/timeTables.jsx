@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import  NavigationBar from "../components/NavigationBar";
-
+import NavigationBar from "../components/NavigationBar";
+import UploadTimeTables from "../components/timeTables/UploadTimeTables";
+import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 const axios = require("axios").default;
 
 class timeTables extends Component {
@@ -8,29 +10,25 @@ class timeTables extends Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    axios
-      .get("http://127.0.0.1:8000/api/annonces/2/")
-      .then(function (response) {
-        // handle success
-        console.log(response);
-        console.log(response.data.texteannonce);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-  }
 
+  tester() {}
   render() {
     return (
       <React.Fragment>
         <NavigationBar />
         <div>
-          <h1>Horaires</h1>
+          <UploadTimeTables />
+          <a href="http://127.0.0.1:8000/download/?path=/media/rapport_securite_groupe_7.pdf/">
+            See
+          </a>
+          <p>\n</p>
+          <Link
+            to="../media/rapport_securite_groupe_7.pdf/"
+            target="_blank"
+            download
+          >
+            Download
+          </Link>
         </div>
       </React.Fragment>
     );
