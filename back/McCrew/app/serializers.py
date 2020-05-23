@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
+from django.contrib import messages
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from django.contrib.auth.hashers import make_password
 from . import models
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer): 
     class Meta:
         model = User
         fields = [ 'id', 'email', 'last_name', 'first_name', 'password', 'is_staff', 'username' ]
@@ -12,6 +13,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     def validate_password (self, password) :
         return make_password(password)
 
+class changePasswordSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'password', 'newPassword']
 
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -36,17 +41,19 @@ class CustomJWTSerializer(TokenObtainPairSerializer):
         token["first_name"] = user.first_name
         token["last_name"] = user.last_name
         token["is_staff"] = user.is_staff
+        token["id"] = user.id
 
         return token
 
     def validate(self, attrs):
         credentials = {
             'username': '',
-            'password': attrs.get("password")
+            'password': attrs.get("password")   
         }
 
         user_obj = User.objects.filter(email=attrs.get("username")).first() or User.objects.filter(
             username=attrs.get("username")).first()
+
         if user_obj:
             credentials['username'] = user_obj.username
 

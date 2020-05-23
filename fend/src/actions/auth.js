@@ -11,12 +11,12 @@ export const authStart = () => {
 export const authSuccess = token => {
     const tokenDecoded = jwt_decode(token.access);
     const user = {
+        id: tokenDecoded.id,
         last_name: tokenDecoded.last_name,
         first_name: tokenDecoded.first_name,
         email: tokenDecoded.email,
         is_staff: tokenDecoded.is_staff
     }
-    console.log(user);
     localStorage.setItem('user', JSON.stringify(user));
     return {
         type: type.AUTH_SUCCESS,
@@ -72,7 +72,6 @@ export const authLogin = (email, password) => {
             // dispatch(checkAuthTimeout(3600)) // 3600 sec avec timeout
         })
         .catch(err => {
-            console.error(err)
             dispatch(authFail(err))
         })
     }

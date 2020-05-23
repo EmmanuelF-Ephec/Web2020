@@ -21,15 +21,13 @@ Axios.interceptors.response.use(
   (response) => {
     return response;
 }, (error) =>  {
-    if (!error.response.config.url.match(/[/]token([/refresh])?/)  ) {
-
         switch  (error.response.status)
         {
             case 401:
                 localStorage.clear();
-                window.location.href = '/'  ;
                 break;
+            default:
+              break;
         }
-    }
     return Promise.reject(error.response);
 });

@@ -14,6 +14,8 @@ import os
 import environ
 import datetime;
 
+DEBUG = True
+
 env = environ.Env(
     SECRET_KEY=(str, ""),
     DEBUG=(bool, False),
@@ -24,6 +26,8 @@ env = environ.Env(
     DB_PASSWORD=(str, "")
 )
 
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 environ.Env.read_env()
 

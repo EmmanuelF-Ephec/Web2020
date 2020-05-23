@@ -56,3 +56,7 @@ def download(request, path):
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
     raise Http404
+class changePasswordViewSet(viewsets.ModelViewSet):
+    queryset = models.User.objects.all()
+    serializer_class = serializers.changePasswordSerializer
+    permission_classes = [permissions.IsAuthenticated]
