@@ -48,14 +48,15 @@ def upload(request):
 
     return HttpResponse(fs.url(name))
 
-def download(request, path):
-    file_path = os.path.join(settings.BASE_DIR, path)
-    if os.path.exists(file_path):
-        with open(file_path, 'rb') as fh:
-            response = HttpResponse(fh.read(), content_type="application/vnd.ms-excel")
-            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
-            return response
-    raise Http404
+def file_download(request, file_path):
+    try:
+        response = StreamingHttpResponse(open(file_path, 'rb'))
+        response['content_type'] = "application/octet-stream"
+        response['Content-Disposition'] = 'attachment; filename=' + os.path.basename(file_path)
+        return response
+    except Exception:
+        raise Http404
+
 class changePasswordViewSet(viewsets.ModelViewSet):
     queryset = models.User.objects.all()
     serializer_class = serializers.changePasswordSerializer

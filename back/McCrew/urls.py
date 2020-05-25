@@ -51,7 +51,7 @@ urlpatterns = [
     url(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     url(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     url(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    url(r'^download/(?P<path>.*)$', views.download),
+    url(r'^download(?P<file_path>.*)/$', views.file_download, name='file_download'),
 
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),

@@ -16,7 +16,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class changePasswordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'password', 'newPassword']
+        fields = ['id', 'password']
 
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
