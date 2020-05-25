@@ -13,10 +13,17 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     def validate_password (self, password) :
         return make_password(password)
 
-class changePasswordSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ['id', 'password']
+class changePasswordSerializer(serializers.Serializer):
+    model = User
+
+    """
+    Serializer for password change endpoint.
+    """
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    #def validate_new_password (self, password) :
+      #  return make_password(password)
 
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:

@@ -17,7 +17,6 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from django.contrib.auth import views as auth_views
 from rest_framework_simplejwt import views as jwt_views
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -35,7 +34,7 @@ router.register(r'notices', views.NoticeViewSet)
 router.register(r'lastNotice', views.LastNoticeViewSet)
 router.register(r'chat', views.ChatViewSet)
 router.register(r'schedule', views.ScheduleViewSet)
-router.register(r'modifyProfile', views.changePasswordViewSet)
+router.register(r'^changePassword', views.changePasswordViewSet, basename="changePassword")
 
 schema_view = get_schema_view(
     openapi.Info(

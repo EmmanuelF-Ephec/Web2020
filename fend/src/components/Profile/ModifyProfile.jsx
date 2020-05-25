@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import  NavigationBar  from "../NavigationBar";
 import { Form, Button, Container } from "react-bootstrap";
 import {connect} from 'react-redux'
-const axios = require("axios").default;
+import axios from 'axios'
 
 class ModifyProfile extends Component {
   state = {
@@ -25,13 +25,16 @@ class ModifyProfile extends Component {
     event.preventDefault();
     const formValid = this.state.formValid;
     if (formValid.oldPassword && formValid.firstPassword && formValid.secondPassword) {
-     
-      axios.post('/token/', JSON.stringify({
-        email: this.props.email,
-        password: this.state.oldPassword
-      }))
+     const user = {
+       
+       old_password: this.state.oldPassword,
+       new_password: this.state.firstPassword
+     }
+     const email = this.props.user.email;
+     console.log(this.props.user.email)
+      axios.put('/changePassword/' + this.props.user.id + "/",user)
       .then( res => {
-        console.log(res)
+        this.props.history.push('/profile')
       }
         
       )
@@ -149,4 +152,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default ModifyProfile;
+export default connect(mapStateToProps)(ModifyProfile);
