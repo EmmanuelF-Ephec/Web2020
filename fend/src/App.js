@@ -30,7 +30,7 @@ class App extends Component {
             <ProtectedRoute path="/fgtPassword" component={FgtPass} />
             <ProtectedRoute path="/home" component={Home} />
             <ProtectedRoute path="/timeTables" component={TimeTables} />
-            <ProtectedRoute exact path="/profile/:id" component={Profile} />
+            <ProtectedRoute exact path="/profile" component={Profile} />
             <ProtectedRoute exact path="/modifyProfile" component={ModifyProfile} />
             <ProtectedRoute exact path="/ManageProfiles" component={ManageProfiles} />
             <ProtectedRoute exact path="/announcements" component={Announcements} />
