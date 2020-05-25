@@ -1,8 +1,2 @@
 
-back/McCrew/__pycache__/
-
-back/McCrew/app/__pycache__/
-
-back/McCrew/app/migrations/__pycache__/0003_auto_20200521_1811.cpython-38.pyc
-
-back/McCrew/app/migrations/__pycache__/0004_schedule_created_at.cpython-38.pyc
+back/media/
