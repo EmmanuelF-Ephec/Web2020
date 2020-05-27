@@ -1,5 +1,6 @@
 # Web2020
 Manuel d'installation: 
+
 Creer une base de données mysql avec un nom quelconque
 
 Aller dans le directory 'back' et créer un fichier que on nomme '.env'
