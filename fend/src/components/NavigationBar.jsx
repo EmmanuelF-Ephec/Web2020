@@ -1,20 +1,20 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import styled from "styled-components";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 import { NavItem } from "react-bootstrap";
 
 const Styles = styled.div`
   .navbar {
-    background-color: #222;
+    background-color: #1f532f;
   }
 
   .navbar-nav .nav-link {
-    color: grey;
+    color: white;
 
     &:hover {
-      color: white;
+      color: #ffdf23;
     }
   }
 `;
@@ -29,7 +29,7 @@ class NavigationBar extends Component {
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("expirationDate");
     localStorage.removeItem("user");
-  }
+  };
 
   render() {
     return (
@@ -38,6 +38,14 @@ class NavigationBar extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
+              <Navbar.Brand href="home">
+                <img
+                  src="../media/mcdonalds.svg"
+                  width="30"
+                  height="30"
+                  className="d-inline-block align-top"
+                />
+              </Navbar.Brand>
               <Nav.Item>
                 <Nav.Link href="/home">Accueil</Nav.Link>
               </Nav.Item>
@@ -50,31 +58,33 @@ class NavigationBar extends Component {
             </Nav>
             <Nav>
               {" "}
-              {this.props.user.is_staff ?
+              {this.props.user.is_staff ? (
+                <Nav.Item>
+                  <Nav.Link href="/ManageProfiles">Manage profiles</Nav.Link>
+                </Nav.Item>
+              ) : (
+                ""
+              )}
               <Nav.Item>
-                <Nav.Link href="/ManageProfiles">Manage profiles</Nav.Link>
+                <Nav.Link href="/profile">Profile</Nav.Link>
               </Nav.Item>
-              : ""
-              }
               <Nav.Item>
-                <Nav.Link href="/profile/6">Profile</Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link href="/" onClick={this.logout}>Log out</Nav.Link>
+                <Nav.Link href="/" onClick={this.logout}>
+                  Log out
+                </Nav.Link>
               </Nav.Item>
             </Nav>
           </Navbar.Collapse>
         </Navbar>
       </Styles>
-    )
+    );
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    ...state.authReducer
-  }
-}
-
+    ...state.authReducer,
+  };
+};
 
 export default connect(mapStateToProps)(NavigationBar);
