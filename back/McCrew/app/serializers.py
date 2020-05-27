@@ -25,6 +25,7 @@ class changePasswordSerializer(serializers.Serializer):
     #def validate_new_password (self, password) :
       #  return make_password(password)
 
+
 class NoticeSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = models.Notice

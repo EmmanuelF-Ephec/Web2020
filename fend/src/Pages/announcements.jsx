@@ -14,18 +14,11 @@ class Announcements extends Component {
 
   componentDidMount() {
     let currentComponent = this;
-    axios
-      .get(`/notices/`)
-      .then(function (response) {
-        console.log("rreussite");
-
-        currentComponent.setState({
-          posts: response.data,
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+    axios.get("/notices/").then(function (response) {
+      currentComponent.setState({
+        posts: response.data,
       });
+    });
   }
 
   render() {
@@ -42,7 +35,7 @@ class Announcements extends Component {
               return b.idannonces - a.idannonces;
             })
             .map((postItem) => {
-              return <PostDisplay key={postItem.idannonces} post={postItem} />;
+              return <PostDisplay key={postItem.id} post={postItem} />;
             })
         ) : (
           <p>No posts</p>

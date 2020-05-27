@@ -12,14 +12,25 @@ code {
     monospace;
 }
 
-#login, #fgtPass, #registration {
+#login,
+#fgtPass {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url(./media/background.jpg);
+  background-size: 100%;
+}
+#registration {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
 }
 
-#login form, #fgtPass form, #registration form {
+#login form,
+#fgtPass form,
+#registration form {
   min-width: 600px;
 }
 

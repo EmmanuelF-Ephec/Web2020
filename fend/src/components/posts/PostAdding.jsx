@@ -19,13 +19,11 @@ class postAdding extends Component {
       title: null,
       text: null,
       idUser: "1",
-      dateTime: null,
       show: false,
       formErrors: {
         title: "",
         text: "",
         idUser: "",
-        dateTime: "",
       },
     };
   }
@@ -34,16 +32,13 @@ class postAdding extends Component {
     event.preventDefault();
     if (formValid(this.state.formErrors)) {
       const post = {
-        titre: this.state.title,
-        texteannonce: this.state.text,
-        idUtil: this.state.idUser,
-        dateCreation: this.state.dateTime,
+        title: this.state.title,
+        content: this.state.text,
+        user: "http://127.0.0.1:8000/api/users/" + this.state.idUser + "/",
       };
-      axios
-        .post("/annonces/", JSON.stringify(post))
-        .then((res) => {
-          console.log(res.data);
-        });
+      axios.post("/notices/", JSON.stringify(post)).then((res) => {
+        console.log(res.data);
+      });
     } else {
       console.log("Erreur dans le formulaire");
     }
