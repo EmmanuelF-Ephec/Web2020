@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Adding a post renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Detail of a post renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Login renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`SideNavigation renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`TimeTables renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`Uploading a time table renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`announcements renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`fgtPassword renders correctly 1`] = `ShallowWrapper {}`;
+
+exports[`registration renders correctly 1`] = `ShallowWrapper {}`;

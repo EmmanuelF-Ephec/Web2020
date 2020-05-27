@@ -40,10 +40,8 @@ class NavigationBar extends Component {
             <Nav className="mr-auto">
               <Navbar.Brand href="home">
                 <img
-                  src="../media/mcdonalds.svg"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
+                  src="../media/mcdonalds.jpg"
+                  className="image-responsive"
                 />
               </Navbar.Brand>
               <Nav.Item>

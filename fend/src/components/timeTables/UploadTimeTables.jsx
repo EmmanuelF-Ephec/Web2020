@@ -24,6 +24,7 @@ class UploadTimeTables extends Component {
       });
       console.log(response.data);
     });
+    window.location.reload(false);
   }
   onChange(e) {
     if (e.target.name == "name") {
@@ -53,10 +54,17 @@ class UploadTimeTables extends Component {
   render() {
     return (
       <Form onSubmit={this.onFormSubmit}>
-        <h1>File Upload</h1>
-        <input name="name" type="text" onChange={this.onChange} />
+        <h1>Ajoutez les horaires ici!</h1>
+        <input
+          name="name"
+          type="text"
+          onChange={this.onChange}
+          placeholder="Nom de l'horaire ici"
+        />
+        <p></p>
         <input type="file" onChange={this.onChange} />
         <Button type="submit">Upload</Button>
+        <p></p>
       </Form>
     );
   }

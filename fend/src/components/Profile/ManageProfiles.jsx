@@ -43,7 +43,7 @@ class ManageProfiles extends Component {
           {this.props.show
           ? <RegistrationForm />
           : ""}
-          <Table>
+          <Table className="table">
             <thead>
               <tr>
                 <th>Nom</th>
