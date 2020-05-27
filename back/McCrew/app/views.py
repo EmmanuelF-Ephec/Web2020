@@ -38,7 +38,7 @@ class ChatViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 class ScheduleViewSet(viewsets.ModelViewSet):
-    queryset = models.Schedule.objects.all().order_by('-created_at')
+    queryset = models.Schedule.objects.all().order_by('-created_at').reverse()
     serializer_class = serializers.ScheduleSerializer
     permission_classes = [permissions.IsAuthenticated]
 
